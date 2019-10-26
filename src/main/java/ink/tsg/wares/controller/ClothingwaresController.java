@@ -3,6 +3,8 @@ package ink.tsg.wares.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+
 import ink.tsg.untils.Msg;
 import ink.tsg.wares.beans.Clothingwares;
+import ink.tsg.wares.beans.Wares;
+import ink.tsg.wares.service.WaresService;
 import ink.tsg.wares.service.impl.ClothingwaresServiceImpl;
 
 
@@ -30,6 +36,8 @@ public class ClothingwaresController {
 	@Autowired
 	private ClothingwaresServiceImpl clothingWaresService;
 	
+	@Autowired
+	private WaresService wService;
 	
 	/**
 	 * 查询所有商品分类
@@ -58,15 +66,21 @@ public class ClothingwaresController {
 		
 	}
 	/**
-	 * 删除属性
+	 * 删除分类
 	 * */
 	@RequestMapping(value="/delClothing",method=RequestMethod.GET)
-	public String delHot(@RequestParam("clothingId") Integer clothingId) {
-		boolean b = clothingWaresService.deleteById(clothingId);
-		return "/wares/addWares";
+	public String delClothing(@RequestParam("clothingId") Integer clothingId,HttpServletRequest request) {
+		EntityWrapper<Wares> wrapper = new EntityWrapper<>();
+		wrapper.eq("wares_clothing_id", clothingId);
+		int count = wService.selectCount(wrapper);
+		if(count == 0) {
+			boolean b = clothingWaresService.deleteById(clothingId);
+			request.setAttribute("msgDelClothing","删除成功！");
+			return "/wares/addWares";
+		}else {
+			request.setAttribute("msgDelClothing","删除失败！该分类下还有商品存在，导致无法删除！");
+			return "/wares/addWares";
+		}
 	}
-
-	
-	
 }
 

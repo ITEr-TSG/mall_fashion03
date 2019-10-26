@@ -62,8 +62,8 @@ input[type="number"] {
 								<tr v-for="item in hot">
 									<td>{{item.hotId}}</td>
 									<td class="text-nowrap">{{item.hotName}}</td>
-									<td><a
-										:href="'${APP_PATH}/hotwares/delHot?hotId='+item.hotId">删除</a>
+									<td>
+									 <a :href="'${APP_PATH}/hotwares/delHot?hotId='+item.hotId" >删除</a>
 									</td>
 								</tr>
 
@@ -114,8 +114,9 @@ input[type="number"] {
 								<tr v-for="item in clothing">
 									<td>{{item.clothingId}}</td>
 									<td class="text-nowrap">{{item.clothingName}}</td>
-									<td><a
-										:href="'${APP_PATH}/clothingwares/delClothing?clothingId='+item.clothingId">删除</a>
+									<td>
+									<a :href="'${APP_PATH}/clothingwares/delClothing?clothingId='+item.clothingId">删除</a>  
+									<!-- <button type="button" class="btn btn-link" id="delClothingById">删除</button> -->
 									</td>
 								</tr>
 
@@ -283,6 +284,20 @@ input[type="number"] {
 	<script src="${APP_PATH}/static/vue/vue.min.js"></script>
 	<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 	<script>
+	var msgDelHot = '<%=request.getAttribute("msgDelHot")%>';
+	if(msgDelHot != "null"){
+		layer.msg(msgDelHot, {icon: 2}, function(){
+			window.location.href = "${APP_PATH}/wares/addWares";
+		});
+		
+	}
+	var msgDelClothing = '<%=request.getAttribute("msgDelClothing")%>';
+	if(msgDelClothing != "null"){
+		layer.msg(msgDelClothing, {icon: 2}, function(){
+			window.location.href = "${APP_PATH}/wares/addWares";
+		});
+	}
+	
 	//文件上传
 	$('#upload-file').change(function() {
         fileValid(this, 1024, 'image')

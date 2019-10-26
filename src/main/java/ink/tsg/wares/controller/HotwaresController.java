@@ -3,6 +3,8 @@ package ink.tsg.wares.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 
 import ink.tsg.untils.Msg;
 import ink.tsg.wares.beans.Hotwares;
+import ink.tsg.wares.beans.Wares;
+import ink.tsg.wares.service.WaresService;
 import ink.tsg.wares.service.impl.HotwaresServiceImpl;
 
 /**
@@ -29,6 +32,10 @@ import ink.tsg.wares.service.impl.HotwaresServiceImpl;
 @RequestMapping("/hotwares")
 public class HotwaresController {
 
+	
+	@Autowired
+	private WaresService wService;
+	
 	@Autowired
 	private HotwaresServiceImpl hotwaresService;
 	
@@ -36,12 +43,19 @@ public class HotwaresController {
 	 * 删除属性
 	 * */
 	@RequestMapping(value="/delHot",method=RequestMethod.GET)
-	public String delHot(@RequestParam("hotId") Integer hotId) {
-		boolean b = hotwaresService.deleteById(hotId);
-		/*
-		 * if(b) { return null; }else { return null; }
-		 */
-		return "/wares/addWares";
+	public String delHot(@RequestParam("hotId") Integer hotId,HttpServletRequest request) {
+		
+		EntityWrapper<Wares> wrapper = new EntityWrapper<>();
+		wrapper.eq("wares_hot_id", hotId);
+		int count = wService.selectCount(wrapper);
+		if(count == 0) {
+			boolean b = hotwaresService.deleteById(hotId);
+			request.setAttribute("msgDelHot","删除成功！");
+			return "/wares/addWares";
+		}else {
+			request.setAttribute("msgDelHot","删除失败！该分类下还有商品存在，导致无法删除！");
+			return "/wares/addWares";
+		}
 	}
 	
 	/**
