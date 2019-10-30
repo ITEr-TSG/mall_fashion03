@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 
 /**
  * <p>
- * 
+ * 购物车实体类
  * </p>
  *
  * @author ITEr
