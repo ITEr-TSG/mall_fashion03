@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +35,44 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
-
+	
+	
+	/**
+	 * 退出登录
+	 * */
+	@RequestMapping(value="/loginOut",method=RequestMethod.GET)
+	public String loginOut(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "redirect:/fashion_page/index.jsp";
+	}
+	
+	/**
+	 * 用户登录
+	 * */
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String login(Customer cust,HttpServletRequest request) {
+		EntityWrapper<Customer> wrapper = new EntityWrapper<>();
+		wrapper.eq("cust_name", cust.getCustName());
+		try {
+			Customer customer = customerService.selectOne(wrapper);
+			if(customer == null) {//用户不存在
+				request.getSession().setAttribute("error", "用户不存在！");
+				return "redirect:/fashion_page/login.jsp";
+			}else {
+				if(customer.getCustPassword().equals(cust.getCustPassword())) { //密码正确
+					request.getSession().setAttribute("custNick", customer.getCustNick());
+					return "redirect:/fashion_page/index.jsp";
+				}else { ///密码错误
+					request.getSession().setAttribute("error", "密码错误！");
+					return "redirect:/fashion_page/login.jsp";
+				}
+			}
+		} catch (Exception e) {
+			return "redirect:/fashion_page/login.jsp";
+		}
+		
+			
+	}
 	
 	
 	
@@ -70,7 +109,6 @@ public class CustomerController {
 		return Msg.success().add("countMan", countMan).add("countWoman", countWoman)
 				.add("age19", countAge19).add("age29", countAge29).add("age59", countAge59).add("age100", countAge100);
 	}
-	
 	
 	/**
 	 *  修改客户

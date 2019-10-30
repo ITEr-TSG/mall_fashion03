@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +44,42 @@ public class WaresController {
 
 	@Autowired
 	private WaresService wService;
+	
+	
+	/**
+	   * 前端猜你喜欢模块
+	 * */
+	@RequestMapping(value="/similarWares",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg similarWares(@RequestParam("keyWordsOfMan")String keyWordsOfMan,@RequestParam("keyWordsSeaso")String keyWordsSeaso) {
+		EntityWrapper<Wares> wrapper = new EntityWrapper<>();
+		wrapper.eq("wares_of_man",keyWordsOfMan).eq("wares_seaso",keyWordsSeaso);
+		List<Wares> list = wService.selectList(wrapper);
+		return Msg.success().add("similarWares", list);
+	}
+	
+	/**
+	 * 根据id查询一条商品信息
+	 * */
+	@RequestMapping(value="/getById",method=RequestMethod.GET)
+	public String getById(@RequestParam("id")Integer id,HttpServletRequest res) {
+		Wares selectById = wService.selectById(id);
+		res.setAttribute("wares", selectById);
+		res.setAttribute("ImgPath", selectById.getWaresImg());
+		return "forward:/fashion_page/single.jsp";
+	}
+	
+	/**
+	 * 查询热销商品
+	 * */
+	@RequestMapping(value="/getByOtherId",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Wares> getByHot(@RequestParam("id")Integer wares_hot_id){
+		EntityWrapper<Wares> wrapper = new EntityWrapper<>();
+		wrapper.eq("wares_hot_id", wares_hot_id);
+		List<Wares> list = wService.selectList(wrapper);
+		return list;
+	}
 	
 	
 	/**

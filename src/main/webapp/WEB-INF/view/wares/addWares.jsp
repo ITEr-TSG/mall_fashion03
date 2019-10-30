@@ -143,13 +143,10 @@ input[type="number"] {
 				<!-- 左侧导航 -->
 				<%@ include file="/WEB-INF/view/common/left.jsp"%>
 			</div>
-
 			<div class="content">
 				<div class="container-fluid">
-
 					<div class="card">
 						<div class="card-header bg-light">添加商品</div>
-
 						<div class="card-body">
 							<form action="${APP_PATH}/wares/addWare" id="add_wares_form" method="post"
 								enctype="multipart/form-data">
@@ -201,8 +198,6 @@ input[type="number"] {
 											</select>
 										</div>
 									</div>
-
-
 									<div class="col-md-6">
 										<div class="input-group mb-3">
 											<div class="input-group-prepend">
@@ -251,7 +246,6 @@ input[type="number"] {
 											<p class="help-block" style="color:orange;">请选择大小不超过1M的图片</p>
 										</div>
 									</div>
-
 								</div>
 								<div class="input-group mb-3">
 											<div class="input-group-prepend">
@@ -259,18 +253,12 @@ input[type="number"] {
 											</div>
 											<textarea id="textarea" name="waresDes" class="form-control" rows="6"></textarea>
 										</div>
-
-
-
 								<input type="button" onclick="add_wares_btn()"
 									class="btn btn-outline-primary" value="添加"  /> <input
 									type="reset" class="btn btn-outline-secondary" value="重置" />
 							</form>
 						</div>
 					</div>
-
-
-
 				</div>
 			</div>
 		</div>

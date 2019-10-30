@@ -1,24 +1,30 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Single</title>
+<title>商品展示</title>
+<%
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Fashionpress Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="${APP_PATH }/fashion_page/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="${APP_PATH }/fashion_page/css/style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/hover_pack.js"></script>
-<link rel="stylesheet" href="css/etalage.css">
-<script src="js/jquery.etalage.min.js"></script>
+<script type="text/javascript" src="${APP_PATH }/static/js/jquery2.0-min.js"></script>
+<script type="text/javascript" src="${APP_PATH }/fashion_page/js/hover_pack.js"></script>
+<link rel="stylesheet" href="${APP_PATH }/fashion_page/css/etalage.css">
+
+<script src="${APP_PATH }/fashion_page/js/jquery.etalage.min.js"></script>
+
 <script>
 			jQuery(document).ready(function($){
 
@@ -35,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			});
 		</script>
-<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+<script src="${APP_PATH }/fashion_page/js/easyResponsiveTabs.js" type="text/javascript"></script>
 		    <script type="text/javascript">
 			    $(document).ready(function () {
 			        $('#horizontalTab').easyResponsiveTabs({
@@ -48,45 +54,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
-<div class="header">
-	<div class="header_top">
-		<div class="container">
-			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt=""/></a>
-			</div>
-			<ul class="shopping_grid">
-			      <a href="#"><li>Join</li></a>
-			      <a href="login.html"><li>Sign In</li></a>
-			      <a href="#"><li><span class="m_1">Shopping Bag</span>&nbsp;&nbsp;(0) &nbsp;<img src="images/bag.png" alt=""/></li></a>
-			      <div class="clearfix"> </div>
-			</ul>
-		    <div class="clearfix"> </div>
-		</div>
-	</div>
-	<div class="h_menu4"><!-- start h_menu4 -->
-		<div class="container">
-				<a class="toggleMenu" href="#">Menu</a>
-				<ul class="nav">
-					<li class="active"><a href="index.html" data-hover="Home">Home</a></li>
-					<li><a href="about.html" data-hover="About Us">About Us</a></li>
-					<li><a href="careers.html" data-hover="Careers">Careers</a></li>
-					<li><a href="contact.html" data-hover="Contact Us">Contact Us</a></li>
-					<li><a href="404.html" data-hover="Company Profile">Company Profile</a></li>
-					<li><a href="register.html" data-hover="Company Registration">Company Registration</a></li>
-					<li><a href="wishlist.html" data-hover="Wish List">Wish List</a></li>
-				 </ul>
-				 <script type="text/javascript" src="js/nav.js"></script>
-	      </div><!-- end h_menu4 -->
-     </div>
-</div>
+
+
+<!-- 静态引入头部 -->
+<%@ include file="/fashion_page/commonPage/header.jsp"%>
+
 <div class="column_center">
   <div class="container">
 	<div class="search">
-	  <div class="stay">Search Product</div>
-	  <div class="stay_right">
-		  <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-		  <input type="submit" value="">
-	  </div>
 	  <div class="clearfix"> </div>
 	</div>
     <div class="clearfix"> </div>
@@ -95,179 +70,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="main">
   <div class="content_top">
   	<div class="container">
-	   <div class="col-md-3 sidebar_box">
-	   	 <div class="sidebar">
-			<div class="menu_box">
-		    <h3 class="menu_head">Products Menu</h3>
-			  <ul class="menu">
-				<li class="item1"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/> Man</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-				<li class="item2"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Women</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-				<li class="item3"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Fashion 2015</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails</a></li>
-					</ul>
-				</li>
-				<li class="item4"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Kids</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-				<li class="item5"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Jeans</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-				<li class="item6"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Tshirt</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-				<li class="item7"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Top Fashion</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-				<li class="item8"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Summer Collection</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-				<li class="item9"><a href="#"><img class="arrow-img" src="images/f_menu.png" alt=""/>Special Offer</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-				<!--initiate accordion-->
-		<script type="text/javascript">
-			$(function() {
-			    var menu_ul = $('.menu > li > ul'),
-			           menu_a  = $('.menu > li > a');
-			    menu_ul.hide();
-			    menu_a.click(function(e) {
-			        e.preventDefault();
-			        if(!$(this).hasClass('active')) {
-			            menu_a.removeClass('active');
-			            menu_ul.filter(':visible').slideUp('normal');
-			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-			        } else {
-			            $(this).removeClass('active');
-			            $(this).next().stop(true,true).slideUp('normal');
-			        }
-			    });
-			
-			});
-		</script>
-       </div>
-		    <div class="delivery">
-				<img src="images/delivery.jpg" class="img-responsive" alt=""/>
-				<h3>Delivering</h3>
-				<h4>World Wide</h4>
-			</div>
-			<div class="twitter">
-			   <h3>Latest From Twitter</h3>
-			   <ul class="twt1">
-			   	  <i class="twt"> </i>
-			   	  <li class="twt1_desc"><span class="m_1">@Contrary</span> to popular belief, Lorem Ipsum is<span class="m_1"> not simply</span></li>
-			   	  <div class="clearfix"> </div>
-			   </ul>
-			   <ul class="twt1">
-			   	  <i class="twt"> </i>
-			   	  <li class="twt1_desc"><span class="m_1">There are many</span> variations of passages of Lorem Ipsum available, but the majority <span class="m_1">have suffered</span></li>
-			   	  <div class="clearfix"> </div>
-			   </ul>
-			   <ul class="twt1">
-			   	  <i class="twt"> </i>
-			   	  <li class="twt1_desc"><span class="m_1">Lorem Ipsum</span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has <span class="m_1">been the industry's standard dummy text ever</span></li>
-			   	  <div class="clearfix"> </div>
-			   </ul>
-			</div>
-			<div class="clients">
-				<h3>Our Happy Clients</h3>
-				<h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.</h4>
-			   <ul class="user">
-			   	<i class="user_icon"></i>
-			   	<li class="user_desc"><a href="#"><p>John Doe, Company Info</p></a></li>
-			   	<div class="clearfix"> </div>
-			   </ul>
-			</div>
-	   </div> 
-	   <div class="col-md-9 single_right">
+	    <!-- 左侧导航 -->
+	   <%@ include file="/fashion_page/commonPage/left_nav.jsp"%>
+	   
+	   	<div class="col-md-9 single_right">
 	   	<div class="single_top">
 	       <div class="single_grid">
-				<div class="grid images_3_of_2">
+				<div class="grid images_3_of_2" id="waresImg">
 						<ul id="etalage">
 							<li>
 								<a href="optionallink.html">
-									<img class="etalage_thumb_image" src="images/s2.jpg" class="img-responsive" />
-									<img class="etalage_source_image" src="images/s2.jpg" class="img-responsive" title="" />
+									<img class="etalage_thumb_image" src="${APP_PATH }/fashion_page/images/s2.jpg" class="img-responsive" />
+									<img class="etalage_source_image" src="${APP_PATH }/fashion_page/images/s2.jpg" class="img-responsive" title="" />
 								</a>
 							</li>
 							<li>
-								<img class="etalage_thumb_image" src="images/s2.jpg" class="img-responsive" />
-								<img class="etalage_source_image" src="images/s2.jpg" class="img-responsive" title="" />
+								<img class="etalage_thumb_image" src="${APP_PATH }/fashion_page/images/s2.jpg" class="img-responsive" />
+								<img class="etalage_source_image" src="${APP_PATH }/fashion_page/images/s2.jpg" class="img-responsive" title="" />
 							</li>
 							<li>
-								<img class="etalage_thumb_image" src="images/s3.jpg" class="img-responsive"  />
-								<img class="etalage_source_image" src="images/s3.jpg"class="img-responsive"  />
+								<img class="etalage_thumb_image" src="${APP_PATH }/fashion_page/images/s3.jpg" class="img-responsive"  />
+								<img class="etalage_source_image" src="${APP_PATH }/fashion_page/images/s3.jpg"class="img-responsive"  />
 							</li>
 						    <li>
-								<img class="etalage_thumb_image" src="images/s4.jpg" class="img-responsive"  />
-								<img class="etalage_source_image" src="images/s4.jpg"class="img-responsive"  />
+								<img class="etalage_thumb_image" src="${APP_PATH }/fashion_page/images/s4.jpg" class="img-responsive"  />
+								<img class="etalage_source_image" src="${APP_PATH }/fashion_page/images/s4.jpg"class="img-responsive"  />
 							</li>
 						</ul>
 						 <div class="clearfix"></div>		
 				  </div> 
 				  <div class="desc1 span_3_of_2">
-				  	<h1> These perfectly</h1>
-				<p class="availability">Availability: <span class="color">In stock</span></p>
+				  	<h1>${wares.waresName}</h1>
+				<p class="availability">适用人群：<span class="color" id="keyWordsOfMan">${wares.waresOfMan}</span></p><br>
+				<p class="availability">适用季节： <span class="color" id="keyWordsSeaso">${wares.waresSeaso}</span></p><br>
 			    <div class="price_single">
-				  <span class="reducedfrom">$140.00</span>
-				  <span class="actual">$120.00</span><a href="#">click for offer</a>
+				  <span class="reducedfrom">${wares.waresPrice}</span>
+				  <span class="actual">${wares.waresPrice}</span><!-- <a href="#">click for offer</a> -->
 				</div>
-				<h2 class="quick">Quick Overview:</h2>
-				<p class="quick_desc">Nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
-			    <div class="wish-list">
+				<h2 class="quick">商品描述:</h2>
+				<p class="quick_desc">${wares.waresDes}</p>
+			    <!-- <div class="wish-list">
 				 	<ul>
 				 		<li class="wish"><a href="#">Add to Wishlist</a></li>
 				 	    <li class="compare"><a href="#">Add to Compare</a></li>
 				 	</ul>
-				 </div>
+				 </div> -->
 				<ul class="size">
-					<h3>Length</h3>
-					<li><a href="#">32</a></li>
-					<li><a href="#">34</a></li>
+					<h3>尺码</h3>
+					<li><a href="#">${wares.waresSize}</a></li>
 				</ul>
 				<div class="quantity_box">
 					<ul class="product-qty">
-					   <span>Quantity:</span>
+					   <span>数量：</span>
 					   <select>
 						 <option>1</option>
 						 <option>2</option>
@@ -277,15 +131,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 <option>6</option>
 					   </select>
 				    </ul>
-				    <ul class="single_social">
+				    <!-- <ul class="single_social">
 						<li><a href="#"><i class="fb1"> </i> </a></li>
 						<li><a href="#"><i class="tw1"> </i> </a></li>
 						<li><a href="#"><i class="g1"> </i> </a></li>
 						<li><a href="#"><i class="linked"> </i> </a></li>
-		   		    </ul>
+		   		    </ul> -->
 		   		    <div class="clearfix"></div>
 	   		    </div>
-			    <a href="reservation.html" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline " target="_self">Buy</a>
+			    <a href="reservation.html" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline " target="_self">加入购物车</a>
 			</div>
 		    <div class="clearfix"> </div>
 				</div>
@@ -294,62 +148,93 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <div class="sap_tabs">	
 				     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 						  <ul class="resp-tabs-list">
-						  	  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Product Description</span></li>
-							  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Additional Information</span></li>
-							  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Reviews</span></li>
+						  	  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>商品描述</span></li>
+							  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>附加信息</span></li>
+							  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>评论</span></li>
 							  <div class="clear"></div>
 						  </ul>				  	 
 							<div class="resp-tabs-container">
 							    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 									<div class="facts">
 									  <ul class="tab_list">
-									  	<li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</a></li>
-									  	<li><a href="#">augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigatione</a></li>
+									  	<li><a href="#">有件事从始至终 我从未明白过 无论我如何挣扎努力
+											却没有一丝效果 在我脑海中 只能铭记下这首疑歌 合适的时机解析自我 但我明白
+											时间何等珍贵 白驹过隙 如挂钟摇摆 开始倒数 直到终结 人生会随时间起伏改变 犹如无知觉的梦境
+											过程超乎你的掌控 凝望时光 看它从窗棂悄然遁走 试图挽留 可我不曾领悟 时间不等人 只能默默望着你的离去
+											将一切铭存于心 即使锲而不舍，披奏坚韧之铠 最后努力却轻易分崩离析 对我来说 最好的结果 便是把这段固执信念深埋
+											我曾努力挣扎 走到现今 最终才发现 原来都无济于事 不可控制的 失去了所有 最终才明白 前途渺茫 有件事 我不曾明白
+											无论你如何竭尽全力 为什么却于事无补 在我脑海深处 撰写下这首疑歌 时刻警醒自己 我曾经努力过
+											但我所谓的信念你却只会嘲笑 可我的灵魂 早已全然属于你 曾经历历在目 那潸然动容的瞬间 如今却是过往云烟 万事皆变，物是人非 再此重逢 你或许 早已不再认识我 并非是你的过错 而是我已改变 但是过去的一切 都有可能重蹈覆辙 你把一切抛之脑后 我曾挣扎过 但一切徒劳 对我来说 这段记忆 我只能掩埋在深处 我曾努力挣扎 走到至今 最终才发现 一切都徒劳 不受我的控制 失去了所有 最终才明白
+											</a></li>
+									  	<!-- <li><a href="#">augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigatione</a></li>
 									  	<li><a href="#">claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica</a></li>
-									  	<li><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</a></li>
+									  	<li><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</a></li> -->
 									  </ul>           
 							        </div>
 							     </div>	
 							      <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
 									<div class="facts">
 									  <ul class="tab_list">
-									    <li><a href="#">augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigatione</a></li>
-									  	<li><a href="#">claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica</a></li>
-									  	<li><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</a></li>
+									    <li><a href="#">有件事从始至终 我从未明白过 无论我如何挣扎努力
+											却没有一丝效果 在我脑海中 只能铭记下这首疑歌 合适的时机解析自我 但我明白
+											时间何等珍贵 白驹过隙 如挂钟摇摆 开始倒数 直到终结 人生会随时间起伏改变 犹如无知觉的梦境
+											过程超乎你的掌控 凝望时光 看它从窗棂悄然遁走 试图挽留 可我不曾领悟 时间不等人 只能默默望着你的离去
+											将一切铭存于心 即使锲而不舍，披奏坚韧之铠 最后努力却轻易分崩离析 对我来说 最好的结果 便是把这段固执信念深埋
+											我曾努力挣扎 走到现今 最终才发现 原来都无济于事 不可控制的 失去了所有 最终才明白 前途渺茫 有件事 我不曾明白
+											无论你如何竭尽全力 为什么却于事无补 在我脑海深处 撰写下这首疑歌 时刻警醒自己 我曾经努力过
+											但我所谓的信念你却只会嘲笑 可我的灵魂 早已全然属于你 曾经历历在目 那潸然动容的瞬间 如今却是过往云烟 万事皆变，物是人非 再此重逢 你或许 早已不再认识我 并非是你的过错 而是我已改变 但是过去的一切 都有可能重蹈覆辙 你把一切抛之脑后 我曾挣扎过 但一切徒劳 对我来说 这段记忆 我只能掩埋在深处 我曾努力挣扎 走到至今 最终才发现 一切都徒劳 不受我的控制 失去了所有 最终才明白</a></li>
+									  	<!-- <li><a href="#">claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica</a></li>
+									  	<li><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</a></li> -->
 									  </ul>           
 							        </div>
 							     </div>	
 							      <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
 									<ul class="tab_list">
-									  	<li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</a></li>
-									  	<li><a href="#">augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigatione</a></li>
+									  	<li><a href="#">有件事从始至终 我从未明白过 无论我如何挣扎努力
+											却没有一丝效果 在我脑海中 只能铭记下这首疑歌 合适的时机解析自我 但我明白
+											时间何等珍贵 白驹过隙 如挂钟摇摆 开始倒数 直到终结 人生会随时间起伏改变 犹如无知觉的梦境
+											过程超乎你的掌控 凝望时光 看它从窗棂悄然遁走 试图挽留 可我不曾领悟 时间不等人 只能默默望着你的离去
+											将一切铭存于心 即使锲而不舍，披奏坚韧之铠 最后努力却轻易分崩离析 对我来说 最好的结果 便是把这段固执信念深埋
+											我曾努力挣扎 走到现今 最终才发现 原来都无济于事 不可控制的 失去了所有 最终才明白 前途渺茫 有件事 我不曾明白
+											无论你如何竭尽全力 为什么却于事无补 在我脑海深处 撰写下这首疑歌 时刻警醒自己 我曾经努力过
+											但我所谓的信念你却只会嘲笑 可我的灵魂 早已全然属于你 曾经历历在目 那潸然动容的瞬间 如今却是过往云烟 万事皆变，物是人非 再此重逢 你或许 早已不再认识我 并非是你的过错 而是我已改变 但是过去的一切 都有可能重蹈覆辙 你把一切抛之脑后 我曾挣扎过 但一切徒劳 对我来说 这段记忆 我只能掩埋在深处 我曾努力挣扎 走到至今 最终才发现 一切都徒劳 不受我的控制 失去了所有 最终才明白</a></li>
+									  	<!-- <li><a href="#">augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigatione</a></li>
 									  	<li><a href="#">claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores leg</a></li>
-									  	<li><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</a></li>
+									  	<li><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</a></li> -->
 									  </ul>      
 							     </div>	
 							 </div>
 					      </div>
 			  </div>
-		<h3 class="single_head">Related Products</h3>	
-	    <div class="related_products">
-	     <div class="col-md-4 top_grid1-box1 top_grid2-box2"><a href="single.html">
-	     	<div class="grid_1">
-	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="images/p12.jpg" class="img-responsive" alt=""/> </div>
-	     	  <div class="grid_2">
-	     	  	<p>There are many variations of passages</p>
-	     	  	<ul class="grid_2-bottom">
-	     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
-	     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
-	     	  		<div class="clearfix"> </div>
-	     	  	</ul>
-	     	  </div>
-	     	</div>
-	     </a></div>
+		<h3 class="single_head">猜你喜欢</h3>	
+	    <div class="related_products" id="similarWares">
+	    
+	    
+	     <div class="col-md-4 top_grid1-box1">
+	     	<a href="single.html">
+		     	<div class="grid_1">
+		     	  <div class="b-link-stroke b-animate-go  thickbox">
+			        <img src="${APP_PATH }/fashion_page/images/p12.jpg" class="img-responsive" alt=""/> 
+			      </div>
+		     	  <div class="grid_2">
+		     	  	<p>There are many variations of passages</p>
+		     	  	<ul class="grid_2-bottom">
+		     	  		<li class="grid_2-left"><p>￥99</p></li>
+		     	  		<li class="grid_2-right">
+		     	  			<a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">加入购物车</a>
+		     	  		</li>
+		     	  		<div class="clearfix"> </div>
+		     	  	</ul>
+		     	  </div>
+		     	</div>
+	     	</a>
+	     </div>
+	     
+	     
 	    <div class="col-md-4 top_grid1-box1"><a href="single.html">
 	     	<div class="grid_1">
 	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="images/p13.jpg" class="img-responsive" alt=""/> </div>
+		        <img src="${APP_PATH }/fashion_page/images/p13.jpg" class="img-responsive" alt=""/> </div>
 	     	  <div class="grid_2">
 	     	  	<p>There are many variations of passages</p>
 	     	  	<ul class="grid_2-bottom">
@@ -363,7 +248,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	     <div class="col-md-4 top_grid1-box1"><a href="single.html">
 	     	<div class="grid_1">
 	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="images/p14.jpg" class="img-responsive" alt=""/> </div>
+		        <img src="${APP_PATH }/fashion_page/images/p14.jpg" class="img-responsive" alt=""/> </div>
 	     	  <div class="grid_2">
 	     	  	<p>There are many variations of passages</p>
 	     	  	<ul class="grid_2-bottom">
@@ -380,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	     <div class="col-md-4 top_grid1-box1 top_grid2-box2"><a href="single.html">
 	     	<div class="grid_1">
 	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="images/p9.jpg" class="img-responsive" alt=""/> </div>
+		        <img src="${APP_PATH }/fashion_page/images/p9.jpg" class="img-responsive" alt=""/> </div>
 	     	  <div class="grid_2">
 	     	  	<p>There are many variations of passages</p>
 	     	  	<ul class="grid_2-bottom">
@@ -394,7 +279,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	    <div class="col-md-4 top_grid1-box1"><a href="single.html">
 	     	<div class="grid_1">
 	     	 <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="images/p10.jpg" class="img-responsive" alt=""/> </div>
+		        <img src="${APP_PATH }/fashion_page/images/p10.jpg" class="img-responsive" alt=""/> </div>
 	     	  <div class="grid_2">
 	     	  	<p>There are many variations of passages</p>
 	     	  	<ul class="grid_2-bottom">
@@ -408,7 +293,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	     <div class="col-md-4 top_grid1-box1"><a href="single.html">
 	     	<div class="grid_1">
 	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="images/p11.jpg" class="img-responsive" alt=""/> </div>
+		        <img src="${APP_PATH }/fashion_page/images/p11.jpg" class="img-responsive" alt=""/> </div>
 	     	  <div class="grid_2">
 	     	  	<p>There are many variations of passages</p>
 	     	  	<ul class="grid_2-bottom">
@@ -427,53 +312,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="footer_bg">
 </div>
-<div class="footer">
-	<div class="container">
-		<div class="col-md-3 f_grid1">
-			<h3>About</h3>
-			<a href="#"><img src="images/logo.png" alt=""/></a>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-		</div>
-		<div class="col-md-3 f_grid1 f_grid2">
-			<h3>Follow Us</h3>
-			<ul class="social">
-				<li><a href=""> <i class="fb"> </i><p class="m_3">Facebook</p><div class="clearfix"> </div></a></li>
-			    <li><a href=""><i class="tw"> </i><p class="m_3">Twittter</p><div class="clearfix"> </div></a></li>
-				<li><a href=""><i class="google"> </i><p class="m_3">Google</p><div class="clearfix"> </div></a></li>
-				<li><a href=""><i class="instagram"> </i><p class="m_3">Instagram</p><div class="clearfix"> </div></a></li>
-			</ul>
-		</div>
-		<div class="col-md-6 f_grid3">
-			<h3>Contact Info</h3>
-			<ul class="list">
-				<li><p>Phone : 1.800.254.5487</p></li>
-				<li><p>Fax : 1.800.254.2548</p></li>
-				<li><p>Email : <a href="mailto:info(at)fashionpress.com"> info(at)fashionpress.com</a></p></li>
-			</ul>
-			<ul class="list1">
-				<li><p>Aliquam augue a bibendum ipsum diam, semper porttitor libero elit egestas gravida, ut quam, nunc taciti</p></li>
-			</ul>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-</div>
-<div class="footer_bottom">
-       	<div class="container">
-       		<div class="cssmenu">
-				<ul>
-					<li class="active"><a href="login.html">Privacy Policy</a></li> .
-					<li><a href="checkout.html">Terms of Service</a></li> .
-					<li><a href="checkout.html">Creative Rights Policy</a></li> .
-					<li><a href="login.html">Contact Us</a></li> .
-					<li><a href="register.html">Support & FAQ</a></li>
-				</ul>
-			</div>
-			<div class="copy">
-			    <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-		    </div>
-		    <div class="clearfix"> </div>
-       	</div>
-</div>
+<%@ include file="/fashion_page/commonPage/footer.jsp" %>
+<script src="${APP_PATH}/static/vue/vue.min.js"></script>
+<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 
+<script type="text/javascript">
+
+	var imgPath="<%=request.getAttribute("ImgPath")%>"
+	$("#waresImg img").attr("src",imgPath);
+	
+	var keyWordsOfMan = $("#keyWordsOfMan").text();
+	var keyWordsSeaso = $("#keyWordsSeaso").text();
+	$.ajax({
+		url:"${APP_PATH}/wares/similarWares?keyWordsOfMan="+keyWordsOfMan+"&keyWordsSeaso="+keyWordsSeaso,
+		method:"GET",
+		success:function(result){
+			console.log(result)
+			console.log(result.extend.similarWares)
+			console.log(result.extend.similarWares[0])
+			if(result.code == 100){
+				/* <div class="col-md-4 top_grid1-box1"><a href="single.html">
+		     	<div class="grid_1">
+		     	  <div class="b-link-stroke b-animate-go  thickbox">
+			        <img src="${APP_PATH }/fashion_page/images/p12.jpg" class="img-responsive" alt=""/> </div>
+		     	  <div class="grid_2">
+		     	  	<p>There are many variations of passages</p>
+		     	  	<ul class="grid_2-bottom">
+		     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
+		     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
+		     	  		<div class="clearfix"> </div>
+		     	  	</ul>
+		     	  </div>
+		     	</div>
+		     	</a>
+		     </div> */
+				
+				
+				
+				
+			}
+			
+			
+		}
+	});
+</script>
 </body>
 </html>		

@@ -29,11 +29,9 @@ ul.shopping_grid{
 }
 ul.shopping_grid li{
 	float: left;
-	background: #eee;
-	padding: 25px 20px 0;
+	padding: 15px 20px 0;
 	border-right: 1px solid #f7f7f7;
-	font: 600 15px/15px 'Lato', sans-serif;
-	min-height: 70px;
+	min-height: 40px;
 	color:#000;
 }
 ul.shopping_grid li img{
@@ -891,6 +889,7 @@ ul.grid_2-bottom li.grid_2-left p small {
 }
 .top_grid1-box1{
 	padding-right:0;
+	margin-top:10px;
 }
 .top_grid2-box2 {
 	padding-left: 0;
@@ -1661,6 +1660,13 @@ div.register-bottom-grid {
 	text-transform: uppercase;
 }
 .login-right input[type="text"] {
+	border: 1px solid #DDDBDB;
+	outline-color:#fb4d01;
+	width: 96%;
+	font-size:0.8125em;
+	padding:10px;
+}
+.login-right input[type="password"] {
 	border: 1px solid #DDDBDB;
 	outline-color:#fb4d01;
 	width: 96%;
