@@ -62,10 +62,6 @@ public class Wares extends Model<Wares> {
      */
     private String waresSeaso;
     /**
-     * 商品尺寸
-     */
-    private String waresSize;
-    /**
      * 商品上架时间
      */
     @TableField(fill = FieldFill.INSERT)
@@ -172,14 +168,6 @@ public class Wares extends Model<Wares> {
         this.waresSeaso = waresSeaso;
     }
 
-    public String getWaresSize() {
-        return waresSize;
-    }
-
-    public void setWaresSize(String waresSize) {
-        this.waresSize = waresSize;
-    }
-
     public String getCreatTime() {
         return creatTime;
     }
@@ -213,7 +201,6 @@ public class Wares extends Model<Wares> {
         ", waresImg=" + waresImg +
         ", waresClothingId=" + waresClothingId +
         ", waresSeaso=" + waresSeaso +
-        ", waresSize=" + waresSize +
         ", creatTime=" + creatTime +
         ", waresDel=" + waresDel +
         "}";

@@ -21,7 +21,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="${APP_PATH }/static/js/jquery2.0-min.js"></script>
 </head>
 <body>
-
+<input type="hidden" name="custId" id="custId"/>
 <!-- 静态引入头部 -->
 <%@ include file="/fashion_page/commonPage/header.jsp"%>
 
@@ -46,5 +46,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="footer_bg">
 </div>
 <%@ include file="/fashion_page/commonPage/footer.jsp" %>
+<script type="text/javascript">
+	var custId="<%=session.getAttribute("custId")%>" 
+	$("#custId").attr("value",custId);
+	if(custId=="null"){
+		
+		
+		
+		
+	}else{
+		//未登录
+		layer.msg('请先登录！', {icon: 5},function(){
+			window.location.href="${APP_PATH}/fashion_page/login.jsp"
+		});
+	}
+
+</script>
 </body>
 </html>		

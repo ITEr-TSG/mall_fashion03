@@ -96,18 +96,7 @@ input[type="number"] {
 												<option value="冬季">冬季</option>
 											</select>
 										</div>
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text">尺码</span>
-											</div>
-											<select name="waresSize" class="form-control">
-												<option value="null" selected="selected">---请选择---</option>
-												<option value="S码">S 码</option>
-												<option value="M码">M 码</option>
-												<option value="L码">L 码</option>
-												<option value="XL码">XL 码</option>
-											</select>
-										</div>
+										
 									</div>
 
 
@@ -204,12 +193,6 @@ input[type="number"] {
 									</div>
 								</div>
 								<div class="layui-form-item">
-									<label class="layui-form-label">尺码：</label>
-									<div class="layui-input-block">
-										<input type="text" readonly="readonly" id="detailModalWSize" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-form-item">
 									<label class="layui-form-label">上架时间：</label>
 									<div class="layui-input-block">
 										<input type="text" readonly="readonly" id="detailModalWTime" class="layui-input">
@@ -290,14 +273,6 @@ input[type="number"] {
 								</div>
 								<div class="layui-form-item">
 									<label class="layui-form-label">尺码：</label>
-									<div class="layui-input-block">
-										<select name="waresSize" id="waresSizeSele" class="form-control">
-											<option value="S码">S 码</option>
-											<option value="M码">M 码</option>
-											<option value="L码">L 码</option>
-											<option value="XL码">XL 码</option>
-										</select>
-									</div>
 								</div>
 								
 								<div class="layui-form-item layui-form-text">
@@ -460,10 +435,6 @@ input[type="number"] {
 						title : '适用季节',
 						width : 100
 					},{
-						field : 'waresSize',
-						title : '尺码',
-						width : 100
-					},{
 						title : '操做',
 						width : 230,
 						toolbar : '#operate'
@@ -490,7 +461,6 @@ input[type="number"] {
 						$("#detailModalWMan").val(data.waresOfMan);
 						$("#detailModalWClothing").val(data.clothingwares.clothingName);
 						$("#detailModalWSeaso").val(data.waresSeaso);
-						$("#detailModalWSize").val(data.waresSize);
 						$("#detailModalWTime").val(data.creatTime);
 						$("#detailModalWDes").val(data.waresDes);
 						$("#detailModalWImg").attr("src",data.waresImg)
@@ -528,8 +498,6 @@ input[type="number"] {
 						$('#wares_clothingSeleModal').siblings("div.layui-form-select").find('dl').find(waresClothingSele).click();
 						var waresSeasoSele = 'dd[lay-value=' + data.waresSeaso + ']';
 						$('#waresSeasoSele').siblings("div.layui-form-select").find('dl').find(waresSeasoSele).click();
-						var waresSizeSele = 'dd[lay-value=' + data.waresSize + ']';
-						$('#waresSizeSele').siblings("div.layui-form-select").find('dl').find(waresSizeSele).click();
 						$("#editModalWDes").val(data.waresDes);
 						$("#editModalWImg").attr("src",data.waresImg)
 						var index = layer.open({

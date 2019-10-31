@@ -19,6 +19,8 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 import ink.tsg.customer.beans.Customer;
 import ink.tsg.customer.service.CustomerService;
+import ink.tsg.shopcar.beans.WaresShopcar;
+import ink.tsg.shopcar.service.WaresShopcarService;
 import ink.tsg.untils.Msg;
 
 /**
@@ -36,6 +38,8 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	@Autowired
+	private WaresShopcarService wsService;
 	
 	/**
 	 * 退出登录
@@ -55,12 +59,18 @@ public class CustomerController {
 		wrapper.eq("cust_name", cust.getCustName());
 		try {
 			Customer customer = customerService.selectOne(wrapper);
+			//查询购物车里商品的数量
+			EntityWrapper<WaresShopcar> wrapperShop = new EntityWrapper<>();
+			wrapperShop.eq("cust_id", customer.getCustId());
+			int carCount = wsService.selectCount(wrapperShop);
 			if(customer == null) {//用户不存在
 				request.getSession().setAttribute("error", "用户不存在！");
 				return "redirect:/fashion_page/login.jsp";
 			}else {
 				if(customer.getCustPassword().equals(cust.getCustPassword())) { //密码正确
 					request.getSession().setAttribute("custNick", customer.getCustNick());
+					request.getSession().setAttribute("custId", customer.getCustId());
+					request.getSession().setAttribute("carCount", carCount);
 					return "redirect:/fashion_page/index.jsp";
 				}else { ///密码错误
 					request.getSession().setAttribute("error", "密码错误！");

@@ -42,7 +42,7 @@ public class ShopCarGenerateCode2 {
 					  .setDbColumnUnderline(true)//指定表明 字段名是否使用下划线
 					  .setNaming(NamingStrategy.underline_to_camel)//下划线转驼峰命名
 					  .setTablePrefix("tb_")
-					  .setInclude("tb_waress_shopcar");//具体的表
+					  .setInclude("tb_wares_shopcar");//具体的表
 		//包名策略配置
 		PackageConfig packageConfig = new PackageConfig();
 		packageConfig.setParent("ink.tsg.shopcar")

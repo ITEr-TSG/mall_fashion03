@@ -185,18 +185,6 @@ input[type="number"] {
 												<option value="冬季">冬季</option>
 											</select>
 										</div>
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text">尺码</span>
-											</div>
-											<select name="waresSize" class="form-control">
-												<option value="null" selected="selected">---请选择---</option>
-												<option value="S码">S 码</option>
-												<option value="M码">M 码</option>
-												<option value="L码">L 码</option>
-												<option value="XL码">XL 码</option>
-											</select>
-										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="input-group mb-3">

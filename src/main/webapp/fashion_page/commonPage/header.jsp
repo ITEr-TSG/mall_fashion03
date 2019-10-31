@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="${APP_PATH}/fashion_page/js/bootstrap.min.js" type="text/javascript"></script>
 <div class="header">
-	<div class="header_top" style="margin-bottom: 10px">
+	<div class="header_top" style="padding-bottom: 10px">
 		<div class="container">
 			<div class="logo">
 				<a href="${APP_PATH }/fashion_page/index.jsp"><img src="${APP_PATH }/fashion_page/images/logo.png" alt=""/></a>
@@ -21,7 +21,7 @@
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="userInfo">
-					    <a href="${APP_PATH }/fashion_page/wishlist.jsp"><li><span class="m_1">购物车</span>&nbsp;&nbsp;(0) &nbsp;<img src="${APP_PATH }/fashion_page/images/bag.png" alt=""/></li></a>
+					    <a href="${APP_PATH }/fashion_page/wishlist.jsp"><li><span class="m_1">购物车</span>&nbsp;&nbsp;&nbsp;<img src="${APP_PATH }/fashion_page/images/bag.png" alt=""/></li></a>
 				      	<a href="${APP_PATH }/customer/loginOut"><li>退出登录</li></a>
 				      	<a href="${APP_PATH }/admin/loginPage"><li>管理员登录</li></a>
 					  </ul>

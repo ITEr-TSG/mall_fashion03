@@ -14,7 +14,6 @@
         <result column="wares_img" property="waresImg" />
         <result column="wares_clothing_id" property="waresClothingId" />
         <result column="wares_seaso" property="waresSeaso" />
-        <result column="wares_size" property="waresSize" />
         <result column="creat_time" property="creatTime" />
         <result column="wares_del" property="waresDel" />
     </resultMap>
@@ -28,7 +27,6 @@
         <result column="wares_img" property="waresImg" />
         <result column="wares_clothing_id" property="waresClothingId" />
         <result column="wares_seaso" property="waresSeaso" />
-        <result column="wares_size" property="waresSize" />
         <result column="creat_time" property="creatTime" />
         <result column="wares_del" property="waresDel" />
         <association property="hotwares" javaType="ink.tsg.wares.beans.Hotwares">
@@ -43,10 +41,10 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        wares_id, wares_name, wares_price, wares_des, wares_hot_id, wares_of_man, wares_img, wares_clothing_id, wares_seaso, wares_size, creat_time, wares_del
+        wares_id, wares_name, wares_price, wares_des, wares_hot_id, wares_of_man, wares_img, wares_clothing_id, wares_seaso, creat_time, wares_del
     </sql>
     <sql id="Base_Column_List_WhitOther">
-        w.wares_id, w.wares_name, w.wares_price, w.wares_des, w.wares_of_man, w.wares_img, w.wares_seaso, w.wares_size, w.creat_time, w.wares_del,
+        w.wares_id, w.wares_name, w.wares_price, w.wares_des, w.wares_of_man, w.wares_img, w.wares_seaso,w.creat_time, w.wares_del,
     	w.wares_clothing_id,w.wares_hot_id,h.hot_name,c.clothing_name
     </sql>
 	

@@ -1,6 +1,6 @@
 package ink.tsg.shopcar.mapper;
 
-import ink.tsg.shopcar.beans.WaressShopcar;
+import ink.tsg.shopcar.beans.WaresShopcar;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author ITEr
- * @since 2019-10-30
+ * @since 2019-10-31
  */
-public interface WaressShopcarMapper extends BaseMapper<WaressShopcar> {
+public interface WaresShopcarMapper extends BaseMapper<WaresShopcar> {
 
 }

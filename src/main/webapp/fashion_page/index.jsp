@@ -256,7 +256,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		},
 		created:function(){
 			this.$http.get("${APP_PATH}/wares/getByOtherId?id=2").then(function(res){
-				console.log(res.body)
 				this.wellWares=res.body;
 			},function(res){
 				
@@ -270,7 +269,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		},
 		created:function(){
 			this.$http.get("${APP_PATH}/wares/getByOtherId?id=3").then(function(res){
-				console.log(res.body)
 				this.discountWares=res.body;
 			},function(res){
 				

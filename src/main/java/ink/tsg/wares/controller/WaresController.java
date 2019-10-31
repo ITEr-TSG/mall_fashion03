@@ -51,9 +51,12 @@ public class WaresController {
 	 * */
 	@RequestMapping(value="/similarWares",method=RequestMethod.GET)
 	@ResponseBody
-	public Msg similarWares(@RequestParam("keyWordsOfMan")String keyWordsOfMan,@RequestParam("keyWordsSeaso")String keyWordsSeaso) {
+	public Msg similarWares(@RequestParam("keyWordsOfMan")String keyWordsOfMan,@RequestParam("keyWordsSeaso")String keyWordsSeaso,@RequestParam("waresId")Integer waresId) {
+		
 		EntityWrapper<Wares> wrapper = new EntityWrapper<>();
-		wrapper.eq("wares_of_man",keyWordsOfMan).eq("wares_seaso",keyWordsSeaso);
+		wrapper.eq("wares_of_man",keyWordsOfMan)
+			   .eq("wares_seaso",keyWordsSeaso)
+			   .ne("wares_id", waresId);
 		List<Wares> list = wService.selectList(wrapper);
 		return Msg.success().add("similarWares", list);
 	}
@@ -115,9 +118,6 @@ public class WaresController {
 		int page = (int) map.get("page");
 		int limit= (int) map.get("limit");
 		EntityWrapper<Wares> wrapper = new EntityWrapper<>();
-		if(!keys.get("waresSize").equals("null")) {
-			wrapper.eq("wares_size", keys.get("waresSize"));
-		}
 		if(keys.get("waresName") != null) {
 			wrapper.like("wares_name", keys.get("waresName"));
 		}
@@ -214,9 +214,6 @@ public class WaresController {
 		}
 		if(wares.getWaresSeaso().equals("null")) {
 			return Msg.fail().add("error", "请选择适用季节！");
-		}
-		if(wares.getWaresSize().equals("null")) {
-			return Msg.fail().add("error", "请选择商品尺码！");
 		}
 		// 提取文件上传的方法
 		String fileName = uploadFile(file);

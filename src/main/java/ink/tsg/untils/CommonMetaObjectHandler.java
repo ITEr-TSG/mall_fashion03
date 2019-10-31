@@ -25,6 +25,10 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 		if (waresDel == null) {
 			setFieldValByName("waresDel", 1, metaObject);
 		}
+		Object carState = getFieldValByName("carState", metaObject);
+		if (carState == null) {
+			setFieldValByName("carState", 1, metaObject);
+		}
 		// creatTime自动填充为当前时间
 		Object creatTime = getFieldValByName("creatTime", metaObject);
 		if (creatTime == null) {
@@ -32,6 +36,12 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
             setFieldValByName("creatTime", dateFormat.format(date), metaObject);
         }
+		Object createTime = getFieldValByName("createTime", metaObject);
+		if (createTime == null) {
+			Date date = new Date();
+			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+			setFieldValByName("createTime", dateFormat.format(date), metaObject);
+		}
 	}
 	/**
 	 * 更新时

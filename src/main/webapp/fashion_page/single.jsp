@@ -22,8 +22,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="${APP_PATH }/static/js/jquery2.0-min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/fashion_page/js/hover_pack.js"></script>
 <link rel="stylesheet" href="${APP_PATH }/fashion_page/css/etalage.css">
-
 <script src="${APP_PATH }/fashion_page/js/jquery.etalage.min.js"></script>
+
+<script type="text/javascript" src="${APP_PATH}/static/layer/layer.js"></script>
+
 
 <script>
 			jQuery(document).ready(function($){
@@ -98,10 +100,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</li>
 						</ul>
 						 <div class="clearfix"></div>		
-				  </div> 
+				  </div>
+				   
 				  <div class="desc1 span_3_of_2">
 				  	<h1>${wares.waresName}</h1>
-				<p class="availability">适用人群：<span class="color" id="keyWordsOfMan">${wares.waresOfMan}</span></p><br>
+				<p class="availability">适用人群：<span class="color" id="keyWordsOfMan" >${wares.waresOfMan}</span></p><br>
 				<p class="availability">适用季节： <span class="color" id="keyWordsSeaso">${wares.waresSeaso}</span></p><br>
 			    <div class="price_single">
 				  <span class="reducedfrom">${wares.waresPrice}</span>
@@ -115,20 +118,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 	    <li class="compare"><a href="#">Add to Compare</a></li>
 				 	</ul>
 				 </div> -->
+				 
+				 <form id="addShopCarForm">
+					<input type="hidden" name="waresId" value="${wares.waresId}">
+					<input type="hidden" name="custId" id="custId">
+					<input type="hidden" name="waresPrice" value="${wares.waresPrice}">
+					<input type="hidden" name="waresName" value="${wares.waresName}">
 				<ul class="size">
 					<h3>尺码</h3>
-					<li><a href="#">${wares.waresSize}</a></li>
+					<li>
+						<input type="radio" value="165/S" name="waresSize"/>165/S&nbsp;&nbsp;
+						<input type="radio" value="170/M" name="waresSize"  checked="checked"/>170/M&nbsp;&nbsp;
+						<input type="radio" value="175/L" name="waresSize"/>175/L&nbsp;&nbsp;
+						<input type="radio" value="180/XL" name="waresSize"/>180/XL&nbsp;&nbsp;
+						<input type="radio" value="185/2XL" name="waresSize"/>185/2XL&nbsp;&nbsp;
+					</li>
 				</ul>
 				<div class="quantity_box">
 					<ul class="product-qty">
 					   <span>数量：</span>
-					   <select>
-						 <option>1</option>
-						 <option>2</option>
-						 <option>3</option>
-						 <option>4</option>
-						 <option>5</option>
-						 <option>6</option>
+					   <select name="waresNum">
+						 <option value="1">1</option>
+						 <option value="2">2</option>
+						 <option value="3">3</option>
+						 <option value="4">4</option>
+						 <option value="5">5</option>
 					   </select>
 				    </ul>
 				    <!-- <ul class="single_social">
@@ -139,7 +153,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		   		    </ul> -->
 		   		    <div class="clearfix"></div>
 	   		    </div>
-			    <a href="reservation.html" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline " target="_self">加入购物车</a>
+			    <button type="button" id="addShopCarBtn" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline " target="_self">加入购物车</button>
+				</form>
 			</div>
 		    <div class="clearfix"> </div>
 				</div>
@@ -208,18 +223,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  </div>
 		<h3 class="single_head">猜你喜欢</h3>	
 	    <div class="related_products" id="similarWares">
+	    	<input type="hidden" value="${wares.waresOfMan}" ref="keyWordsOfMan"/>
+	    	<input type="hidden" value="${wares.waresSeaso}" ref="keyWordsSeaso"/>
+	    	<input type="hidden" value="${wares.waresId}" ref="waresId"/>
 	    
-	    
-	     <div class="col-md-4 top_grid1-box1">
-	     	<a href="single.html">
+	     <div class="col-md-4 top_grid1-box1" v-for="item in similarWares">
+	     	<a :href="'${APP_PATH}/wares/getById?id='+item.waresId">
 		     	<div class="grid_1">
 		     	  <div class="b-link-stroke b-animate-go  thickbox">
-			        <img src="${APP_PATH }/fashion_page/images/p12.jpg" class="img-responsive" alt=""/> 
+			        <img :src="item.waresImg" class="img-responsive" alt=""/> 
 			      </div>
 		     	  <div class="grid_2">
-		     	  	<p>There are many variations of passages</p>
+		     	  	<p>{{item.waresName}}</p>
 		     	  	<ul class="grid_2-bottom">
-		     	  		<li class="grid_2-left"><p>￥99</p></li>
+		     	  		<li class="grid_2-left"><p>￥{{item.waresPrice}}</p></li>
 		     	  		<li class="grid_2-right">
 		     	  			<a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">加入购物车</a>
 		     	  		</li>
@@ -229,82 +246,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		     	</div>
 	     	</a>
 	     </div>
+	     <div class="clearfix"> </div>
 	     
 	     
-	    <div class="col-md-4 top_grid1-box1"><a href="single.html">
-	     	<div class="grid_1">
-	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="${APP_PATH }/fashion_page/images/p13.jpg" class="img-responsive" alt=""/> </div>
-	     	  <div class="grid_2">
-	     	  	<p>There are many variations of passages</p>
-	     	  	<ul class="grid_2-bottom">
-	     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
-	     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
-	     	  		<div class="clearfix"> </div>
-	     	  	</ul>
-	     	  </div>
-	     	</div>
-	     </a></div>
-	     <div class="col-md-4 top_grid1-box1"><a href="single.html">
-	     	<div class="grid_1">
-	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="${APP_PATH }/fashion_page/images/p14.jpg" class="img-responsive" alt=""/> </div>
-	     	  <div class="grid_2">
-	     	  	<p>There are many variations of passages</p>
-	     	  	<ul class="grid_2-bottom">
-	     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
-	     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
-	     	  		<div class="clearfix"> </div>
-	     	  	</ul>
-	     	  </div>
-	     	</div>
-	     </a></div>
-	     <div class="clearfix"> </div>
-	    </div> 
-	    <div class="top_grid2">
-	     <div class="col-md-4 top_grid1-box1 top_grid2-box2"><a href="single.html">
-	     	<div class="grid_1">
-	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="${APP_PATH }/fashion_page/images/p9.jpg" class="img-responsive" alt=""/> </div>
-	     	  <div class="grid_2">
-	     	  	<p>There are many variations of passages</p>
-	     	  	<ul class="grid_2-bottom">
-	     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
-	     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
-	     	  		<div class="clearfix"> </div>
-	     	  	</ul>
-	     	  </div>
-	     	</div>
-	    </a> </div>
-	    <div class="col-md-4 top_grid1-box1"><a href="single.html">
-	     	<div class="grid_1">
-	     	 <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="${APP_PATH }/fashion_page/images/p10.jpg" class="img-responsive" alt=""/> </div>
-	     	  <div class="grid_2">
-	     	  	<p>There are many variations of passages</p>
-	     	  	<ul class="grid_2-bottom">
-	     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
-	     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
-	     	  		<div class="clearfix"> </div>
-	     	  	</ul>
-	     	  </div>
-	     	</div>
-	     </a></div>
-	     <div class="col-md-4 top_grid1-box1"><a href="single.html">
-	     	<div class="grid_1">
-	     	  <div class="b-link-stroke b-animate-go  thickbox">
-		        <img src="${APP_PATH }/fashion_page/images/p11.jpg" class="img-responsive" alt=""/> </div>
-	     	  <div class="grid_2">
-	     	  	<p>There are many variations of passages</p>
-	     	  	<ul class="grid_2-bottom">
-	     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
-	     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
-	     	  		<div class="clearfix"> </div>
-	     	  	</ul>
-	     	  </div>
-	     	</div>
-	     </a></div>
-	     <div class="clearfix"> </div>
 	    </div> 
         </div>
       </div> 
@@ -318,43 +262,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script type="text/javascript">
 
-	var imgPath="<%=request.getAttribute("ImgPath")%>"
+	var imgPath="<%=request.getAttribute("ImgPath")%>" 
 	$("#waresImg img").attr("src",imgPath);
-	
-	var keyWordsOfMan = $("#keyWordsOfMan").text();
-	var keyWordsSeaso = $("#keyWordsSeaso").text();
-	$.ajax({
-		url:"${APP_PATH}/wares/similarWares?keyWordsOfMan="+keyWordsOfMan+"&keyWordsSeaso="+keyWordsSeaso,
-		method:"GET",
-		success:function(result){
-			console.log(result)
-			console.log(result.extend.similarWares)
-			console.log(result.extend.similarWares[0])
-			if(result.code == 100){
-				/* <div class="col-md-4 top_grid1-box1"><a href="single.html">
-		     	<div class="grid_1">
-		     	  <div class="b-link-stroke b-animate-go  thickbox">
-			        <img src="${APP_PATH }/fashion_page/images/p12.jpg" class="img-responsive" alt=""/> </div>
-		     	  <div class="grid_2">
-		     	  	<p>There are many variations of passages</p>
-		     	  	<ul class="grid_2-bottom">
-		     	  		<li class="grid_2-left"><p>$99<small>.33</small></p></li>
-		     	  		<li class="grid_2-right"><a href="single.html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self">Get It</a></li>
-		     	  		<div class="clearfix"> </div>
-		     	  	</ul>
-		     	  </div>
-		     	</div>
-		     	</a>
-		     </div> */
-				
-				
-				
-				
-			}
-			
-			
+	var custId="<%=session.getAttribute("custId")%>" 
+	$("#custId").attr("value",custId);
+	var similarWares = new Vue({
+		el:"#similarWares",
+		data:{
+			similarWares:[],
+		},
+		mounted: function(event){
+			this.$http.get("${APP_PATH}/wares/similarWares",{params:{keyWordsOfMan:this.$refs.keyWordsOfMan.value,keyWordsSeaso:this.$refs.keyWordsSeaso.value,waresId:this.$refs.waresId.value}}).then(function(res){
+				this.similarWares = res.body.extend.similarWares;
+			},function(res){
+				console.log("查询相似商品时，系统出错！")
+			});
 		}
 	});
+	
+	$("#addShopCarBtn").click(function(){
+		if(custId != "null"){//已经登录
+			var formData = $("#addShopCarForm").serialize();
+			$.ajax({
+				url:"${APP_PATH}/waresShopcar/addShopCar",
+				method:"POST",
+				data:formData,
+				success:function(res){
+					if(res.code == 100){
+						layer.msg('加入成功！', {icon: 6});
+					}else{
+						layer.msg('加入失败！', {icon: 5});
+					}
+				}
+			});	
+		}else{//未登录
+			layer.msg('请先登录！', {icon: 5},function(){
+				window.location.href="${APP_PATH}/fashion_page/login.jsp"
+			}); 
+		}
+		
+	});
+	
 </script>
 </body>
 </html>		
