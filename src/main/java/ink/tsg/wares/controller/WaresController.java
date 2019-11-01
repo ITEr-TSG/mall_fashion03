@@ -45,6 +45,16 @@ public class WaresController {
 	@Autowired
 	private WaresService wService;
 	
+	/**
+	 * 根据Id拿到图片，用于前台支付时，回显图片给用户看
+	 * */
+	@RequestMapping(value="/getWaresImg",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg getWaresImg(@RequestParam("id")Integer waresId) {
+		Wares selectById = wService.selectById(waresId);
+		return Msg.success().add("imgPath",selectById.getWaresImg());
+	}
+	
 	
 	/**
 	   * 前端猜你喜欢模块

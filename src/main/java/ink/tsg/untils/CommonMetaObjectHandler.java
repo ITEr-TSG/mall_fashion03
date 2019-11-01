@@ -42,6 +42,12 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
 			setFieldValByName("createTime", dateFormat.format(date), metaObject);
 		}
+		Object payTime = getFieldValByName("payTime", metaObject);
+		if (payTime == null) {
+			Date date = new Date();
+			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+			setFieldValByName("payTime", dateFormat.format(date), metaObject);
+		}
 	}
 	/**
 	 * 更新时

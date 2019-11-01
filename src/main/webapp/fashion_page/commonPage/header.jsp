@@ -7,7 +7,7 @@
 			<div class="logo">
 				<a href="${APP_PATH }/fashion_page/index.jsp"><img src="${APP_PATH }/fashion_page/images/logo.png" alt=""/></a>
 			</div>
-			<ul class="shopping_grid layui-nav">
+			<ul class="shopping_grid">
 				<c:choose>
 					<c:when test="${sessionScope.custNick == null}">
 						<a href="${APP_PATH }/fashion_page/login.jsp"><li>登录</li></a>

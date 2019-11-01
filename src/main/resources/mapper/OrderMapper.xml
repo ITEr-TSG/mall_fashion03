@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.tsg.order.mapper.OrderMapper">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="ink.tsg.order.beans.Order">
+        <id column="order_id" property="orderId" />
+        <result column="order_num" property="orderNum" />
+        <result column="order_consignee" property="orderConsignee" />
+        <result column="order_addr" property="orderAddr" />
+        <result column="order_email" property="orderEmail" />
+        <result column="order_cust_id" property="orderCustId" />
+        <result column="order_car_id" property="orderCarId" />
+        <result column="is_ship" property="isShip" />
+        <result column="order_state" property="orderState" />
+        <result column="pay_time" property="payTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        order_id, order_num,order_consignee, order_addr, order_email, order_cust_id, order_car_id, is_ship, order_state, pay_time
+    </sql>
+
+</mapper>
