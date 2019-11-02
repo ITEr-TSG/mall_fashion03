@@ -67,7 +67,7 @@
 						</a>
 
 							<ul class="nav-dropdown-items">
-								<li class="nav-item"><a href="alerts.html" class="nav-link">
+								<li class="nav-item"><a href="${APP_PATH}/order/allOrders" class="nav-link">
 										<i class="icon icon-energy"></i> 所有订单
 								</a></li>
 

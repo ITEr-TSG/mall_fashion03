@@ -62,8 +62,6 @@ public class WaresShopcar extends Model<WaresShopcar> {
     /**
      * 购物车的状态
      */
-    @TableField(fill = FieldFill.INSERT)
-    @TableLogic
     private Integer carState;
     /**
      * 创建的时间

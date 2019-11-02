@@ -39,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="about">
     <div class="container">
          <div class="register">
-		  	  <h4 class="title">购物车</h4>
+		  	  <h4 class="title">购物车&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red;">${sessionScope.error}</span></h4>
 		  	  <table id="shopCar" lay-filter="shopCarTabble"></table>
 		 </div>
 	</div>

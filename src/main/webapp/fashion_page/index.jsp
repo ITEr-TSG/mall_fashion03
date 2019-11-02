@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	     	  	<p>{{item.waresName}}</p>
 	     	  	<ul class="grid_2-bottom">
 	     	  		<li class="grid_2-left"><p>￥{{item.waresPrice}}</p></li>
-	     	  		<li class="grid_2-right"><a href="#"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">加入购物车</div></a></li>
+	     	  		<li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">加入购物车</div></li>
 	     	  		<div class="clearfix"> </div>
 	     	  	</ul>
 	     	  </div>

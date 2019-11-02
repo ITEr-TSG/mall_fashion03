@@ -18,6 +18,8 @@ import com.baomidou.mybatisplus.plugins.Page;
 import ink.tsg.shopcar.beans.WaresShopcar;
 import ink.tsg.shopcar.service.WaresShopcarService;
 import ink.tsg.untils.Msg;
+import ink.tsg.wares.beans.Wares;
+import ink.tsg.wares.service.WaresService;
 
 /**
  * <p>
@@ -34,6 +36,21 @@ public class WaresShopcarController {
 	@Autowired
 	private WaresShopcarService wsService;
 	
+	@Autowired
+	private WaresService wService;
+	
+	/**
+	 * 通过Id查询到商品条目的信息
+	 * */
+	@RequestMapping(value="/getWaresItemById",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg getWaresItemById(@RequestParam("id")Integer id) {
+		//查询商品条目的信息
+		WaresShopcar waresItem = wsService.selectById(id);
+		//得到商品的图片
+		Wares imgPath = wService.selectById(waresItem.getWaresId());
+		return Msg.success().add("waresItem",waresItem).add("imgPath",imgPath.getWaresImg());
+	}
 	
 	/**
 	 * 删除购物车条目
@@ -41,7 +58,11 @@ public class WaresShopcarController {
 	@RequestMapping(value="/delShopCarItem",method=RequestMethod.GET)
 	@ResponseBody
 	public Msg delShopCarItem(@RequestParam("id")Integer shopCarId) {
-		boolean b = wsService.deleteById(shopCarId);
+		WaresShopcar wShop = new WaresShopcar();
+		wShop.setShopCarId(shopCarId);
+		wShop.setCarState(-1);
+		//boolean b = wsService.deleteById(shopCarId);
+		boolean b = wsService.updateById(wShop);
 		if(b) {
 			return Msg.success().add("success", "删除成功！");
 		}else {
@@ -50,7 +71,7 @@ public class WaresShopcarController {
 	}
 	
 	/**
-	 * 登录后查询购物车
+	 * 用户登录后查询购物车
 	 * @return 
 	 * */
 	@RequestMapping(value="/getShopCarByCustId",method=RequestMethod.GET)
@@ -59,20 +80,16 @@ public class WaresShopcarController {
 		
 		EntityWrapper<WaresShopcar> wrapper = new EntityWrapper<>();
 		wrapper.eq("cust_id", custId);
+		wrapper.ne("car_state",-1);
 		wrapper.orderBy("shop_car_id", false);
 		Page<Map<String, Object>> selectPage = wsService.selectMapsPage(new Page<>(page, limit), wrapper);
-		
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("code",0);
 		resultMap.put("msg","购物车");
 		resultMap.put("count",selectPage.getTotal());
 		resultMap.put("data",selectPage.getRecords());
 		return resultMap;
-		
-		
-		
 	}
-	
 	
 	/**
 	 * 添加到购物车
