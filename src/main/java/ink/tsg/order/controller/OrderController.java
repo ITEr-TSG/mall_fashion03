@@ -21,6 +21,7 @@ import ink.tsg.order.beans.Order;
 import ink.tsg.order.service.OrderService;
 import ink.tsg.shopcar.beans.WaresShopcar;
 import ink.tsg.shopcar.service.WaresShopcarService;
+import ink.tsg.untils.Msg;
 
 /**
  * <p>
@@ -42,7 +43,39 @@ public class OrderController {
 	
 	
 	/**
-	 * 得到所有的订单 
+	 * 已发货 
+	 * */
+	@RequestMapping(value="/updateOrderState",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg updateOrderState(@RequestParam("id")Integer orderId,@RequestParam("state")String orderState) {
+		Order order = new Order();
+		order.setOrderId(orderId);
+		order.setOrderState(orderState);
+		boolean b = oService.updateById(order);
+		if(b) {
+			return Msg.success().add("msg","已发货");
+		}else {
+			return Msg.fail().add("msg","发货失败！");
+		}
+		
+	}
+	
+	/**
+	 * 更新订单表的收货人信息
+	 * */
+	@RequestMapping(value="/updateConsigneeInfo",method=RequestMethod.POST)
+	@ResponseBody
+	public Msg updateConsigneeInfo(Order order) {
+		boolean b = oService.updateById(order);
+		if(b) {
+			return Msg.success().add("msg","修改成功！");
+		}else {
+			return Msg.fail().add("msg","修改失败！");
+		}
+	}
+	
+	/**
+	 * 得到所有的订单 （未收货的）
 	 * @return 
 	 * */
 	@RequestMapping(value="/getAllOrders",method=RequestMethod.GET)
@@ -52,6 +85,7 @@ public class OrderController {
 		if(orderNum !="") {
 			wrapper.eq("order_num", orderNum);
 		}
+		wrapper.eq("is_ship", -1);
 		wrapper.orderBy("order_id");
 		Page<Map<String, Object>> selectMapsPage = oService.selectMapsPage(new Page<>(page, limit), wrapper);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
