@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -40,6 +41,13 @@ public class CustomerController {
 	
 	@Autowired
 	private WaresShopcarService wsService;
+	
+	@RequestMapping(value="/getById",method=RequestMethod.GET)
+	@ResponseBody
+	private Msg getById(@RequestParam("id") Integer custId) {
+		Customer customer = customerService.selectById(custId);
+		return Msg.success().add("cust",customer);
+	}
 	
 	/**
 	 * 退出登录
@@ -83,9 +91,6 @@ public class CustomerController {
 		
 			
 	}
-	
-	
-	
 	/**
 	 * 统计客户
 	 * */

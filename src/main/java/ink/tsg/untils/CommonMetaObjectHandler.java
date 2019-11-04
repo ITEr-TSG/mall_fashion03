@@ -61,6 +61,13 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
             setFieldValByName("updataTime", dateFormat.format(date), metaObject);
         }	
+		// shipTime自动填充为当前时间
+		Object shipTime = getFieldValByName("shipTime", metaObject);
+		if (shipTime == null) {
+			Date date = new Date();
+			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+			setFieldValByName("shipTime", dateFormat.format(date), metaObject);
+		}	
 	}
 
 }

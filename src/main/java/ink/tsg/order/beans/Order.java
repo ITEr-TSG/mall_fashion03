@@ -65,6 +65,11 @@ public class Order extends Model<Order> {
      */
     @TableField(fill = FieldFill.INSERT)
     private String payTime;
+    /**
+             *收货时间
+     */
+    @TableField(fill = FieldFill.UPDATE)
+    private String shipTime;
 
 
     public Integer getOrderId() {

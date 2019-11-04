@@ -3,6 +3,7 @@ package ink.tsg.order.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +42,45 @@ public class OrderController {
 	@Autowired
 	private WaresShopcarService wsService;
 	
+	
+	/**
+	 * 用户收货
+	 * */
+	@RequestMapping(value="/confirmOrder",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg confirmOrder(@RequestParam("id")Integer orderId,@RequestParam("isShip")Integer isShip) {
+		Order o = new Order();
+		o.setOrderId(orderId);
+		o.setIsShip(isShip);
+		o.setOrderState("已收货");
+		boolean b = oService.updateById(o);
+		if(b) {
+			return Msg.success();
+		}else {
+			return Msg.fail();
+		}
+		
+	}
+	
+	
+	/**
+	 * 前端订单中心
+	 * */
+	@RequestMapping(value="/getOrdersByCustId",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getOrdersByCustId(@RequestParam("page")Integer page,@RequestParam("limit")Integer limit,@RequestParam("id")Integer custId) {
+		System.out.println(custId);
+		EntityWrapper<Order> wrapper = new EntityWrapper<>();
+		wrapper.eq("order_cust_id", custId);
+		wrapper.orderBy("order_id", false);
+		Page<Map<String, Object>> selectMapsPage = oService.selectMapsPage(new Page<>(page, limit), wrapper);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("code",0);
+		resultMap.put("msg","订单中心");
+		resultMap.put("count",selectMapsPage.getTotal());
+		resultMap.put("data",selectMapsPage.getRecords());
+		return resultMap;
+	}
 	
 	/**
 	 * 已发货 
@@ -86,12 +126,36 @@ public class OrderController {
 			wrapper.eq("order_num", orderNum);
 		}
 		wrapper.eq("is_ship", -1);
+		wrapper.ne("order_state","已收货");
 		wrapper.orderBy("order_id");
 		Page<Map<String, Object>> selectMapsPage = oService.selectMapsPage(new Page<>(page, limit), wrapper);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("code", 0);
+		resultMap.put("msg", "已经收货的订单");
+		resultMap.put("count", selectMapsPage.getTotal());
+		resultMap.put("data", selectMapsPage.getRecords());
+		return resultMap;
+	}
+	/**
+	 * 得到所有的订单 （已收货的）
+	 * @return 
+	 * */
+	@RequestMapping(value="/getAllOrdersOfShip",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getAllOrdersOfShip(@RequestParam("page")Integer page,@RequestParam("limit")Integer limit,@RequestParam("orderNum")String orderNum) {
+		EntityWrapper<Order> wrapper = new EntityWrapper<>();
+		if(orderNum !="") {
+			wrapper.eq("order_num", orderNum);
+		}
+		wrapper.eq("is_ship", 1);
+		wrapper.eq("order_state","已收货");
+		wrapper.orderBy("order_id");
+		Page<Map<String, Object>> selectMapsPage = oService.selectMapsPage(new Page<>(page, limit), wrapper);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("code", 0);
 		resultMap.put("msg", "所有订单");
-		resultMap.put("count", selectMapsPage.getSize());
+		resultMap.put("count", selectMapsPage.getTotal());
 		resultMap.put("data", selectMapsPage.getRecords());
 		return resultMap;
 	}
@@ -103,7 +167,7 @@ public class OrderController {
 	@RequestMapping(value="/submitOrder",method=RequestMethod.POST)
 	public String submitOrder(Order order,HttpServletRequest req) {
 		long time = new Date().getTime();
-		order.setOrderNum("FISHOINPRESS"+time);
+		order.setOrderNum("FISHOIN"+time);
 		order.setIsShip(-1);			//表示未发货
 		order.setOrderState("已支付");
 		WaresShopcar wShop  = new WaresShopcar();
@@ -124,5 +188,9 @@ public class OrderController {
 	@RequestMapping(value="/allOrders",method=RequestMethod.GET)
 	public String toAdminOrderPage() {
 		return "/order/orders";
+	}
+	@RequestMapping(value="/postSale",method=RequestMethod.GET)
+	public String postSale() {
+		return "/order/postSale";
 	}
 }

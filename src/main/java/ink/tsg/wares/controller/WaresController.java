@@ -45,6 +45,35 @@ public class WaresController {
 	@Autowired
 	private WaresService wService;
 	
+	
+	/**
+	 * 前端页面的左侧导航栏
+	 * */
+	@RequestMapping(value="/getByConditions",method=RequestMethod.GET)
+	public String getByConditions(Wares wares,HttpServletRequest req) {
+		EntityWrapper<Wares> wrapper = new EntityWrapper<>();
+		if(wares.getWaresOfMan() != null) {
+			wrapper.eq("wares_of_man",wares.getWaresOfMan());
+		}
+		if(wares.getWaresSeaso() != null) {
+			wrapper.eq("wares_seaso",wares.getWaresSeaso());
+		}
+		if(wares.getWaresName() != null) {
+			wrapper.like("wares_name",wares.getWaresName());
+		}
+		if(wares.getWaresClothingId() != null) {
+			wrapper.eq("wares_clothing_id",wares.getWaresClothingId());
+		}
+		if(wares.getWaresHotId() != null) {
+			wrapper.eq("wares_hot_id",wares.getWaresHotId());
+		}
+		List<Wares> list = wService.selectList(wrapper);
+		req.setAttribute("list", list);
+		
+		return "forward:/fashion_page/conditionsWares.jsp";
+	}
+	
+	
 	/**
 	 * 根据Id拿到图片，用于前台支付时，回显图片给用户看
 	 * */
@@ -54,8 +83,6 @@ public class WaresController {
 		Wares selectById = wService.selectById(waresId);
 		return Msg.success().add("imgPath",selectById.getWaresImg());
 	}
-	
-	
 	/**
 	   * 前端猜你喜欢模块
 	 * */

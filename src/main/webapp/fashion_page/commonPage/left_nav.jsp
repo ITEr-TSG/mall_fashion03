@@ -6,33 +6,33 @@
 			  <ul class="menu">
 				<li class="item1"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/> 适用人群</a>
 					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
+						<li class="subitem1"><a href="${APP_PATH}/wares/getByConditions?waresOfMan=男">男</a></li>
+						<li class="subitem2"><a href="${APP_PATH}/wares/getByConditions?waresOfMan=女">女</a></li>
+						<li class="subitem3"><a href="${APP_PATH}/wares/getByConditions?waresOfMan=儿童-男">儿童-男</a></li>
+						<li class="subitem3"><a href="${APP_PATH}/wares/getByConditions?waresOfMan=儿童-女">儿童-女</a></li>
+						<li class="subitem3"><a href="${APP_PATH}/wares/getByConditions?waresOfMan=老人">老人</a></li>
 					</ul>
 				</li>
-				<li class="item2"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>Women</a>
+				<li class="item2"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>适用季节</a>
 					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
+						<li class="subitem1"><a href="${APP_PATH}/wares/getByConditions?waresSeaso=春季">盎然之春</a></li>
+						<li class="subitem2"><a href="${APP_PATH}/wares/getByConditions?waresSeaso=夏季">酷热之夏</a></li>
+						<li class="subitem3"><a href="${APP_PATH}/wares/getByConditions?waresSeaso=秋季">金硕之秋</a></li>
+						<li class="subitem3"><a href="${APP_PATH}/wares/getByConditions?waresSeaso=冬季">腊寒之冬</a></li>
 					</ul>
 				</li>
-				<li class="item3"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>Fashion 2015</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails</a></li>
+				<li class="item3"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>穿着部位</a>
+					<ul class="cute" id="clothing_nav_ul">
+						<li class="subitem1" v-for="item in clothing"><a :href="'${APP_PATH}/wares/getByConditions?waresClothingId='+item.clothingId">{{item.clothingName}}</a></li>
 					</ul>
 				</li>
-				<li class="item4"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>Kids</a>
-					<ul class="cute">
-						<li class="subitem1"><a href="#">Cute Kittens </a></li>
-						<li class="subitem2"><a href="#">Strange Stuff </a></li>
-						<li class="subitem3"><a href="#">Automatic Fails </a></li>
+				
+				<li class="item4"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>折扣商品</a>
+					<ul class="cute" id="ishot_nav_ul">
+						<li class="subitem1" v-for="item in hot"><a :href="'${APP_PATH}/wares/getByConditions?waresClothingId='+item.hotId">{{item.hotName}}</a></li>
 					</ul>
 				</li>
-				<li class="item5"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>Jeans</a>
+				<%-- <li class="item5"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>Jeans</a>
 					<ul class="cute">
 						<li class="subitem1"><a href="#">Cute Kittens </a></li>
 						<li class="subitem2"><a href="#">Strange Stuff </a></li>
@@ -66,15 +66,49 @@
 						<li class="subitem2"><a href="#">Strange Stuff </a></li>
 						<li class="subitem3"><a href="#">Automatic Fails </a></li>
 					</ul>
-				</li>
+				</li> --%>
 			</ul>
 		</div>
-				<!--initiate accordion-->
+		
+		
+		<!--initiate accordion-->
 		<script type="text/javascript">
+		//分类管理
+		var clothingNav = new Vue({
+			el:"#clothing_nav_ul",
+			data:{
+				clothing:[]
+			},
+			created: function (event) {
+				this.$http.get("${APP_PATH}/clothingwares/getAll").then(function(response){
+					console.log(response)
+					//成功
+					this.clothing=response.body;
+				},function(response) {
+					//错误
+					console.log("跳出模态框，查询分类时，出现系统错误！")
+				});
+			}
+		});
+		var hotNav = new Vue({
+			el:"#ishot_nav_ul",
+			data:{
+				hot:[]
+			},
+			created: function (event) {
+				this.$http.get("${APP_PATH}/hotwares/getAll").then(function(response){
+					//成功
+					this.hot=response.body;
+				},function(response) {
+					//错误
+					console.log("弹出模态框，查询是否热销产品时，出现系统错误！")
+				});
+			}
+		});
+		
 			$(function() {
 			   renderUl();
 			});
-			
 			function renderUl(){
 				 var menu_ul = $('.menu > li > ul'),
 		           menu_a  = $('.menu > li > a');

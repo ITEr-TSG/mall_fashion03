@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
+import ink.tsg.WaresRemark.beans.WaresRemark;
+import ink.tsg.WaresRemark.service.WaresRemarkService;
 import ink.tsg.shopcar.beans.WaresShopcar;
 import ink.tsg.shopcar.service.WaresShopcarService;
 import ink.tsg.untils.Msg;
@@ -39,18 +41,30 @@ public class WaresShopcarController {
 	@Autowired
 	private WaresService wService;
 	
+	@Autowired
+	private WaresRemarkService wrService;
 	/**
-	 * 通过Id查询到商品条目的信息
+	 * 通过Id查询到商品条目的信息和图片路径以及订单的备注修改信息
 	 * */
 	@RequestMapping(value="/getWaresItemById",method=RequestMethod.GET)
 	@ResponseBody
-	public Msg getWaresItemById(@RequestParam("id")Integer id) {
+	public Msg getWaresItemById(@RequestParam("id")Integer id,@RequestParam("orderNum")String orderNum) {
 		//查询商品条目的信息
 		WaresShopcar waresItem = wsService.selectById(id);
 		//得到商品的图片
 		Wares imgPath = wService.selectById(waresItem.getWaresId());
-		return Msg.success().add("waresItem",waresItem).add("imgPath",imgPath.getWaresImg());
+		//得到订单的备注信息
+		EntityWrapper<WaresRemark> wrapper = new EntityWrapper<>();
+		wrapper.eq("order_id",orderNum);
+		WaresRemark remark;
+		try {
+			remark = wrService.selectOne(wrapper);
+			return Msg.success().add("waresItem",waresItem).add("imgPath",imgPath.getWaresImg()).add("remark",remark.getRemarkText());
+		} catch (Exception e) {
+			return Msg.success().add("waresItem",waresItem).add("imgPath",imgPath.getWaresImg());
+		}
 	}
+	
 	
 	/**
 	 * 删除购物车条目

@@ -284,7 +284,7 @@ input[type="number"] {
 								<div class="layui-form-item layui-form-text">
 									<label class="layui-form-label">图片：</label>
 									<div class="layui-input-block">
-									<img id="editModalWImg" style="width:100px;height: 133px "/>
+									<img id="editModalWImg" style="width:100px;height: 75px "/>
 									
 									<input type="file"  name="file" id="upload-file" style="margin-left: 50px;width: 180px">
 									<span class="help-block" style="color:orange;">重新选择的图片大小不要超过1M</span>

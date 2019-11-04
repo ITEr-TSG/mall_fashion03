@@ -22,7 +22,7 @@
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="userInfo">
 					    <a href="${APP_PATH }/fashion_page/wishlist.jsp"><li><span class="m_1">购物车</span>&nbsp;&nbsp;&nbsp;<img src="${APP_PATH }/fashion_page/images/bag.png" alt=""/></li></a>
-				      	<a href="${APP_PATH }/order/myOrder"><li>我的订单</li></a>
+				      	<a href="${APP_PATH }/fashion_page/orderlist.jsp"><li>我的订单</li></a>
 				      	<a href="${APP_PATH }/customer/loginOut"><li>退出登录</li></a>
 				      	<a href="${APP_PATH }/admin/loginPage"><li>管理员登录</li></a>
 					  </ul>

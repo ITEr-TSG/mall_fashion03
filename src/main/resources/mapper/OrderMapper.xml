@@ -17,11 +17,12 @@
         <result column="is_ship" property="isShip" />
         <result column="order_state" property="orderState" />
         <result column="pay_time" property="payTime" />
+        <result column="ship_time" property="shipTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        order_id, order_num,order_consignee, order_addr, order_email, order_cust_id, order_car_id, is_ship, order_state, pay_time
+        order_id, order_num,order_consignee, order_addr, order_email, order_cust_id, order_car_id, is_ship, order_state, pay_time,ship_time
     </sql>
 
 </mapper>

@@ -27,11 +27,6 @@
 									class="nav-link"> <i class="icon icon-target"></i> 
 									用户统计
 								</a></li>
-
-								<!-- <li class="nav-item"><a href="layouts-hidden-sidebar.html"
-									class="nav-link"> <i class="icon icon-target"></i> Hidden
-										Sidebar
-								</a></li> -->
 							</ul></li>
 							
 						<li class="nav-item nav-dropdown"><a href="#"
@@ -53,11 +48,6 @@
 									class="nav-link"> <i class="fa fa-align-center"></i> 
 									商品统计
 								</a></li>
-
-								<!-- <li class="nav-item"><a href="layouts-hidden-sidebar.html"
-									class="nav-link"> <i class="icon icon-target"></i> Hidden
-										Sidebar
-								</a></li> -->
 							</ul></li>
 
 						<li class="nav-item nav-dropdown"><a href="#"
@@ -71,8 +61,8 @@
 										<i class="icon icon-energy"></i> 所有订单
 								</a></li>
 
-								<li class="nav-item"><a href="buttons.html"
-									class="nav-link"> <i class="icon icon-energy"></i> Buttons
+								<li class="nav-item"><a href="${APP_PATH}/order/postSale"
+									class="nav-link"> <i class="icon icon-energy"></i> 售后管理
 								</a></li>
 
 								<li class="nav-item"><a href="cards.html" class="nav-link">

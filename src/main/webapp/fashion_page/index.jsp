@@ -32,6 +32,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 <script type="text/javascript" src="${APP_PATH }/fashion_page/js/hover_pack.js"></script>
+<script src="${APP_PATH}/static/vue/vue.min.js"></script>
+<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 </head>
 <body>
 <!-- 静态引入头部 -->
@@ -66,8 +68,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="search">
 	  <div class="stay">查询商品</div>
 	  <div class="stay_right">
-		  <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+		  <form action="${APP_PATH}/wares/getByConditions">
+		  <input type="text" name="waresName" placeholder="请输入商品的名称">
 		  <input type="submit" value="">
+		</form>
 	  </div>
 	  <div class="clearfix"> </div>
 	</div>
@@ -246,8 +250,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <%@ include file="/fashion_page/commonPage/footer.jsp" %>
 
-<script src="${APP_PATH}/static/vue/vue.min.js"></script>
-<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 <script type="text/javascript">
 	var sell_well_wares = new Vue({
 		el:"#sell_well_wares",

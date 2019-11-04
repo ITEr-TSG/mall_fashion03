@@ -84,8 +84,7 @@ input[type="number"] {
 			</div>
 		</div>
 	</div>
-	
-	<!-- 展示商品信息模态框 -->
+     <!-- 展示商品信息模态框 -->
 	<div style="display: none;" id="detailOrderModal">
          <div class="card" style="border: 0">
              <div class="card-body">
@@ -98,17 +97,11 @@ input[type="number"] {
 							商品数量：<span id="waresNumSpan" style="color: gray;"></span><hr>
 							商品尺码：<span id="waresSizeSpan" style="color: gray;"></span><hr>
 							支付金额：<span id="waresPaySpan" style="color: gray;"></span><hr>
-							<div class="toggle-switch" data-ts-color="danger">
-                                <label for="isEditWares" class="ts-label">备注修改商品信息</label>
-                                <input id="isEditWares" type="checkbox"/>
-                                <label for="isEditWares" class="ts-helper"></label>
-                            </div>
-							<form style="margin-top: 10px;display: none;" id="orderRemarks">
+							<form style="margin-top: 10px;" id="orderRemarks">
 								<input type="hidden" name="orderId" id="orderNumInput"/>
 								<div class="form-group">
-                                    <textarea name="remarkText"  id="remarkTextarea" placeholder="后期客户可能会要求修改商品信息" class="form-control" rows="3"></textarea>
+                                    <textarea id="remarkTextarea" readonly="readonly" placeholder="该订单没有备注修改内容" class="form-control" rows="6"></textarea>
                                 </div>
-                                <button type="button" id="submitRemark" class="btn btn-outline-success">提交</button>
 							</form>
 						</div>
 						<div class="b-link-stroke b-animate-go  thickbox" style="float: right;">
@@ -120,43 +113,14 @@ input[type="number"] {
 			</div>
          </div>
      </div>
-     <!-- 收货人信息模态框 -->
-	<div style="display: none;" id="editOrderModal">
+      <!-- 收货人信息模态框 -->
+	<div style="display: none;" id="customerInfoModal">
          <div class="card" style="border: 0">
              <div class="card-body">
-				<div class="top_grid1-box1">
-					<div class="grid_1" style="width: 500px;">
-						<div class="grid_2" style="float: left; ">
-							订单号：<span class="orderNumSpan" style="color: gray;"></span><hr>
-							收货人姓名：<span id="orderConsigneeSpan" style="color: gray;"></span><hr>
-							收货人地址：<span id="orderAddrSpan" style="color: gray;"></span><hr>
-							收货人Email：<span id="orderEmailSpan" style="color: gray;"></span><hr>
-							<div class="toggle-switch" data-ts-color="danger">
-                                <label for="isEditConsignee" class="ts-label">修改收货人信息</label>
-                                <input id="isEditConsignee" type="checkbox"/>
-                                <label for="isEditConsignee" class="ts-helper"></label>
-                            </div>
-						</div>
-						<div class="b-link-stroke b-animate-go  thickbox" style="float: right;">
-							<form style="display: none;" id="consigneeInfoForm">
-							<input type="hidden" name="orderId" class="orderId"/>
-								<div class="form-group">
-                                    <label for="required-input" class="require">收货人</label>
-                                    <input type="text" name="orderConsignee" id="orderConsigneeInput" class="form-control">
-                                </div>
-								<div class="form-group">
-                                    <label for="required-input" class="require">地址</label>
-                                    <input type="text" name="orderAddr"  id="orderAddrInput"  class="form-control">
-                                </div>
-								<div class="form-group">
-                                    <label for="required-input" class="require">邮箱</label>
-                                    <input type="email" name="orderEmail" id="orderEmailInput" class="form-control">
-                                </div>
-                                <button type="button" id="submitConsigneeInfo" class="btn btn-outline-success">提交</button>
-							</form>
-						</div>
-					</div>
-				</div>
+				订单号：<span class="orderNumSpan" style="color: gray;"></span><hr>
+				下单人姓名：<span id="custNameSpan" style="color: gray;"></span><hr>
+				下单人Email：<span id="custEmailSpan" style="color: gray;"></span><hr>
+						
 			</div>
          </div>
      </div>
@@ -187,14 +151,14 @@ input[type="number"] {
 			  table.render({
 			    elem: '#orderTable'
 			    ,height: 500
-			    ,url: '${APP_PATH}/order/getAllOrders' //数据接口
+			    ,url: '${APP_PATH}/order/getAllOrdersOfShip' //数据接口
 			    ,page: true //开启分页
 			    ,where:{orderNum:orderNum}
 			    ,cols: [[ //表头
 			      {field: 'orderNum', title: '订单号',rowspan:2,align:'center'}
 			      ,{title: '收货人信息',colspan:3,align:'center'} 
 			      ,{title: '订单信息',colspan:2,align:'center'} 
-			      ,{field: 'payTime', title: '支付时间',align:'center', rowspan:2}
+			      ,{field: 'shipTime', title: '收货时间',align:'center', rowspan:2}
 			      ,{align:'center', style:"padding-bottom:5px;",width:300,rowspan:2, title: '操做',toolbar: '#operateOrder'}
 			    ],[
 			    	 {field: 'orderConsignee', title: '收货人',align:'center'}
@@ -207,7 +171,7 @@ input[type="number"] {
 			    	
 			    ]],
 			    text: {
-			        none: '暂无订单可以处理' //默认：无数据
+			        none: '暂无售后订单可以处理' //默认：无数据
 			      }
 			  ,parseData: function(res){ //res 即为原始返回的数据
 				    return {
@@ -226,7 +190,6 @@ input[type="number"] {
 				  console.log(data)
 				  $(".orderNumSpan").html(data.orderNum);
 				  if(layEvent === 'detailOrder'){ //查看
-					  
 					  $("#orderNumInput").val(data.orderNum);
 					  //查询出该订单下的商品条目信息 
 					  $.ajax({
@@ -241,6 +204,7 @@ input[type="number"] {
 								$("#waresNumSpan").html(res.extend.waresItem.waresNum);
 								$("#waresSizeSpan").html(res.extend.waresItem.waresSize);
 								$("#waresPaySpan").html("￥"+res.extend.waresItem.waresTotal);
+								$("#remarkTextarea").val(res.extend.remark);
 							}else{
 								console.log("查询出该订单下的商品条目信息 失败！")
 							}
@@ -259,47 +223,32 @@ input[type="number"] {
 							type : 1,
 							content : $('#detailOrderModal')
 						}); 
-				  } else if(layEvent === 'editOrder'){ //修改收货人信息
-					  $("#orderConsigneeSpan").html(data.orderConsignee);
-					  $("#orderAddrSpan").html(data.orderAddr);
-					  $("#orderEmailSpan").html(data.orderEmail);
-					  $("#orderConsigneeInput").val(data.orderConsignee);
-					  $("#orderAddrInput").val(data.orderAddr);
-					  $("#orderEmailInput").val(data.orderEmail);
+				  } else if(layEvent === 'customerInfo'){ //修改收货人信息
 					  $(".orderId").val(data.orderId);
+				  	  $.ajax({
+						url:"${APP_PATH}/customer/getById?id="+data.orderCustId,
+						method:"GET",
+						success:function(res){
+							console.log(res)
+							if(res.code == 100){
+								$("#custNameSpan").html(res.extend.cust.custName);
+								$("#custEmailSpan").html(res.extend.cust.custEmail);
+							}
+						}
+				  	  });
 					  var index = layer.open({
-							title : '收货人信息',
+							title : '下单者信息',
 							fix : true,
 							maxmin : true,
-							area: ['600px','400px'],
+							area: ['500px','300px'],
 							resize :false,
 							move: false,
 							zIndex : 500,
 							shadeClose : false,
 							shade : 0.4,
 							type : 1,
-							content : $('#editOrderModal')
+							content : $('#customerInfoModal')
 						});
-				  } else if(layEvent === 'editOrderState'){ //修改订单状态
-					  if(data.orderState == "运输中"){
-						  layer.msg("已经发货了！别点了！", {icon: 7}); 
-						  return;
-					  }
-					  $.ajax({
-						  url:"${APP_PATH}/order/updateOrderState?id="+data.orderId+"&state=运输中",
-						  method:"GET",
-						  success:function(res){
-							  if(res.code == 100){
-									layer.msg(res.extend.msg, {icon: 6},function(){
-										obj.update({
-											orderState: '运输中'
-										    });
-									});
-								}else{
-									layer.msg(res.extend.msg, {icon: 5}); 
-								}
-						  }
-					  });
 				  } else if(layEvent === 'LAYTABLE_TIPS'){
 				    layer.alert('Hi，头部工具栏扩展的右侧图标。');
 				  }
@@ -312,64 +261,10 @@ input[type="number"] {
 			});
 	}
 	
-	//展开和关闭备注修改信息的表单
-	$("#isEditWares").click(function(){
-		if ($(this).is(":checked")) {
-			$("#orderRemarks").css("display","")
-		} else {
-			$("#orderRemarks").css("display","none")
-		}
-	});
-	$("#isEditConsignee").click(function(){
-		if ($(this).is(":checked")) {
-			$("#consigneeInfoForm").css("display","")
-		} else {
-			$("#consigneeInfoForm").css("display","none")
-		}
-	});
-	//备注修改商品信息
-	$("#submitRemark").click(function(){
-		var remarkForm = $("#orderRemarks").serialize();
-		$.ajax({
-			url:"${APP_PATH}/waresRemark/addRemark",
-			method:"POST",
-			data:remarkForm,
-			success:function(res){
-				console.log(res)
-				if(res.code == 100){
-					layer.msg(res.extend.msg, {icon: 6},function(){
-						location.reload();
-					});
-				}else{
-					layer.msg(res.extend.msg, {icon: 5}); 
-				}
-			}
-		});
-	});
-	//修改收货人信息
-	$("#submitConsigneeInfo").click(function(){
-		var consigneeForm = $("#consigneeInfoForm").serialize();
-		$.ajax({
-			url:"${APP_PATH}/order/updateConsigneeInfo",
-			method:"POST",
-			data:consigneeForm,
-			success:function(res){
-				console.log(res)
-				if(res.code == 100){
-					layer.msg(res.extend.msg, {icon: 6},function(){
-						location.reload();
-					});
-				}else{
-					layer.msg(res.extend.msg, {icon: 5}); 
-				}
-			}
-		});
-	});
 	</script>
 <script type="text/html" id="operateOrder">
   <a class="btn btn-sm btn-rounded btn-outline-success" lay-event="detailOrder">订单商品信息</a>
-  <a class="btn btn-sm btn-rounded btn-outline-primary" lay-event="editOrder">收货人信息</a>
-  <a class="btn btn-sm btn-rounded btn-outline-danger" lay-event="editOrderState">发货</a>
+  <a class="btn btn-sm btn-rounded btn-outline-primary" lay-event="customerInfo">下单者信息</a>
 </script>
 
 </body>

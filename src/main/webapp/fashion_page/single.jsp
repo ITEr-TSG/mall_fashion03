@@ -25,7 +25,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="${APP_PATH }/fashion_page/js/jquery.etalage.min.js"></script>
 
 <script type="text/javascript" src="${APP_PATH}/static/layer/layer.js"></script>
-
+<script src="${APP_PATH}/static/vue/vue.min.js"></script>
+<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 
 <script>
 			jQuery(document).ready(function($){
@@ -81,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="grid images_3_of_2" id="waresImg">
 						<ul id="etalage">
 							<li>
-								<a href="optionallink.html">
+								<a>
 									<img class="etalage_thumb_image" src="${APP_PATH }/fashion_page/images/s2.jpg" class="img-responsive" />
 									<img class="etalage_source_image" src="${APP_PATH }/fashion_page/images/s2.jpg" class="img-responsive" title="" />
 								</a>
@@ -257,8 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="footer_bg">
 </div>
 <%@ include file="/fashion_page/commonPage/footer.jsp" %>
-<script src="${APP_PATH}/static/vue/vue.min.js"></script>
-<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
+
 
 <script type="text/javascript">
 
