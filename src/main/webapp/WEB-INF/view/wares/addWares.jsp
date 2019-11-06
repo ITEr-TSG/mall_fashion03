@@ -15,6 +15,8 @@
 <link rel="stylesheet"
 	href="${APP_PATH}/static/admin/vendor/font-awesome/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="${APP_PATH}/static/admin/css/styles.css">
+	<script src="${APP_PATH}/static/vue/vue.min.js"></script>
+	<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 <%-- <link rel="stylesheet" href="${APP_PATH}/static/layui/css/layui.css"
 	media="all"> --%>
 <style type="text/css">
@@ -257,8 +259,7 @@ input[type="number"] {
 	<script src="${APP_PATH}/static/admin/vendor/chart.js/chart.min.js"></script>
 	<script src="${APP_PATH}/static/admin/js/carbon.js"></script>
 	<script src="${APP_PATH}/static/layer/layer.js"></script>
-	<script src="${APP_PATH}/static/vue/vue.min.js"></script>
-	<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
+
 	<script>
 	var msgDelHot = '<%=request.getAttribute("msgDelHot")%>';
 	if(msgDelHot != "null"){

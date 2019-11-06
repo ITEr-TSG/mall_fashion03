@@ -21,8 +21,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="${APP_PATH }/static/js/jquery2.0-min.js"></script>
 <script src="${APP_PATH}/static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="${APP_PATH}/static/verify/verify.css" >
+<script type="text/javascript" src="${APP_PATH}/static/verify/verify.min.js"></script>
 </head>
 <style>
+	.btn.disabled, .btn:disabled {
+	    opacity: .65;
+	}
 	input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -54,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>注册信息（ * 为必填 ）</h3>
 					 <div>
 						<span>用户名<label style="color: red">*</label></span>
-						<input type="text" name="custName" autofocus="autofocus"> 
+						<input type="text" name="custName"> 
 					 </div>
 					 <div>
 						<span>昵称<label style="color: red">*</label></span>
@@ -62,11 +67,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </div>
 					 <div>
 						 <span>邮箱<label style="color: red">*</label></span>
-						 <input type="email" name="custEmail"> 
+						 <input type="email" id="custEmailInput" name="custEmail"> 
 					 </div>
 					 <div>
 						<span>密码<label style="color: red">*</label></span>
-						<input type="password">
+						<input type="password" id="password1">
 					 </div>
 					 <div><br/>
 						<span>性别：
@@ -78,15 +83,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </div>
 					 <div>
 						<span>确认密码<label style="color: red">*</label></span>
-						<input type="password" name="custPassword">
+						<input type="password" name="custPassword" id="password2">
 					 </div>
 					 
 					 </div>
 				</form>
 				<div class="clearfix"> </div>
+				<div id="mpanel"></div>
 				<div class="register-but">
 				   <form>
-					   <input type="button" id="regiter_btn" value="注册">
+					   <input type="button" class="btn" disabled="disabled" id="regiter_btn" value="注册">
 					   <div class="clearfix"> </div>
 				   </form>
 				</div>
@@ -98,7 +104,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <%@ include file="/fashion_page/commonPage/footer.jsp" %>
 
 <script type="text/javascript">
+	$('#mpanel').slideVerify({
+		type : 1,		//类型
+		vOffset : 5,	//误差量，根据需求自行调整
+		barSize : {
+			width : '30%',
+			height : '40px',
+		},
+		ready : function() {
+			
+		},
+		success : function() {
+			$("#regiter_btn").removeAttr("disabled");
+		},
+		error : function() {
+			$("#regiter_btn").attr("disabled","disabled");
+		}
+	});
 	$("#regiter_btn").click(function () {
+		var password1 = $("#password1").val();
+		var password2 = $("#password2").val();
+		if(password1 != password2){
+			layui.use('layer', function(){
+				var layer = layui.layer;
+				layer.msg('两次输入的密码不一致！', {icon: 5}); 
+			});
+			return;
+		}
+		var custEmail = $("#custEmailInput").val();
+		var verifyEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+		if(!verifyEmail.test(custEmail)){
+			layui.use('layer', function(){
+				var layer = layui.layer;
+				layer.msg('邮箱格式错误！', {icon: 5}); 
+			});
+			return;
+		}
 		$.ajax({
 			url : "${APP_PATH}/customer/regiterCust",
 			type : "POST",

@@ -20,6 +20,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="${APP_PATH }/static/js/jquery2.0-min.js"></script>
 </head>
+<style type="text/css">
+.contact-form input[type="button"] {
+    display: inline-block;
+    padding: 13px 25px;
+    background: #df1f26;
+    color: #FFF;
+    font-size: 1em;
+    line-height: 18px;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+</style>
 <body>
 
 <!-- 静态引入头部 -->
@@ -38,26 +55,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="singel_right">
 			     <div class="col-md-8">
 				      <div class="contact-form">
-				  	        <form method="post" action="contact-post.html">
-					    	    <p class="comment-form-author"><label for="author">Your Name:</label>
-					    	    	<input type="text" class="textbox" value="Enter your name here..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your name here...';}">
+				  	        <form id="contactForm">
+					    	    <p class="comment-form-author"><label for="author">姓名：</label>
+					    	    	<input type="text" name="contactName" placeholder="请输入你的称呼" class="textbox" >
 						    	</p>
-						        <p class="comment-form-author"><label for="author">Email:</label>
-						     	   <input type="text" class="textbox" value="Enter your email here..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+						        <p class="comment-form-author"><label for="author">Email：</label>
+						     	   <input type="text" name="contactEmail" placeholder="xxxxx@xx.com" class="textbox" >
 						        </p>
-						        <p class="comment-form-author"><label for="author">Message:</label>
-						    	  <textarea value="Enter your message here..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Enter your message here...</textarea>
+						        <p class="comment-form-author"><label for="author">内容：</label>
+						    	  <textarea name="contactText" placeholder="请填写您要留言的内容"></textarea>
 						        </p>
-						        <input name="submit" type="submit" id="submit" value="Submit">
+						        <input type="button" id="submitContactBtn" value="提交">
 					        </form>
 				       </div>
 			     </div>
 			     <div class="col-md-4 contact_right">
-					<h3>Address</h3>
+					<h3>我们的地址</h3>
 				    <div class="address">
 						<i class="pin_icon"></i>
 					    <div class="contact_address">
-						  Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non
+						  江西省南昌市向塘经济开发区丽湖中大道103号清河公寓9栋628
 					    </div>
 					    <div class="clearfix"></div>
 					</div>
@@ -71,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="address">
 						<i class="mail"></i>
 					    <div class="contact_email">
-						  <a href="malito:mail@demolink.org">mail(at)fashionpress.com</a>
+						  <a href="#">jflaodage@qq.com</a>
 					    </div>
 					    <div class="clearfix"></div>
 					</div>
@@ -79,12 +96,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		        <div class="clearfix"></div>
 		</div>
 		<div class="map">
-           <iframe src="https://map.baidu.com/search/%E6%B1%9F%E8%A5%BF%E6%9C%8D%E8%A3%85%E5%AD%A6%E9%99%A2/@12907977.361671949,3286341.8,16.61z?querytype=con&wd=%E6%B1%9F%E8%A5%BF%E6%9C%8D%E8%A3%85%E5%AD%A6%E9%99%A2&c=163&provider=pc-aladin&pn=0&device_ratio=2&da_src=shareurl"> </iframe>
+			<img alt="公司地址" src="${APP_PATH}/fashion_page/images/addr_contact.png" style="width: 1000px">
         </div>
      </div>
 </div>
 <div class="footer_bg">
 </div>
 <%@ include file="/fashion_page/commonPage/footer.jsp" %>
+<script type="text/javascript" src="${APP_PATH}/static/layer/layer.js"></script>
 </body>
+<script type="text/javascript">
+	$("#submitContactBtn").click(function(){
+		$.ajax({
+			url:"${APP_PATH}/contact/addContact",
+			method:"POST",
+			data:$("#contactForm").serialize(),
+			success:function(res){
+				console.log(res)
+				if(res.code == 100){
+					layer.msg('感谢您的留言！', {icon: 6},function(){
+						location.reload();
+					}); 
+				}else{
+					layer.msg('系统繁忙！', {icon: 5});
+				}
+			}
+		})
+	});
+</script>
 </html>		

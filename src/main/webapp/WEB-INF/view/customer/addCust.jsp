@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="${APP_PATH}/static/admin/css/styles.css">
 <link rel="stylesheet" href="${APP_PATH}/static/layui/css/layui.css"
 	media="all">
+	<script src="${APP_PATH}/static/vue/vue.min.js"></script>
+<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 	<style type="text/css">
 		.layui-form-label{
 			 width: 100px
@@ -68,7 +70,7 @@
 								<div class="layui-form-item layui-col-md6">
 									<label class="layui-form-label mustLabel">邮箱</label>
 									<div class="layui-input-block">
-										<input type="email" name="custEmail" required lay-verify="required"
+										<input type="email" name="custEmail" id="custEmailInput" required lay-verify="required"
 											placeholder="请输入邮箱" autocomplete="off" class="layui-input">
 									</div>
 									<!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
@@ -76,7 +78,7 @@
 								<div class="layui-form-item layui-col-md6">
 									<label class="layui-form-label mustLabel">密码</label>
 									<div class="layui-input-block">
-										<input type="password" name="title" required lay-verify="required"
+										<input type="password" name="title" id="password1" required lay-verify="required"
 											placeholder="请输入密码" autocomplete="off" class="layui-input">
 									</div>
 									<!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
@@ -84,7 +86,7 @@
 								<div class="layui-form-item layui-col-md6">
 									<label class="layui-form-label mustLabel">确认密码</label>
 									<div class="layui-input-block">
-										<input type="password" name="custPassword" required lay-verify="required"
+										<input type="password" name="custPassword" id="password2" required lay-verify="required"
 											placeholder="请确认密码" autocomplete="off" class="layui-input">
 									</div>
 									<!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
@@ -136,7 +138,19 @@
 		  var layer = layui.layer;
 		  //监听提交
 		  form.on('submit(addCust)', function(data){
-		    
+			   	var password1 = $("#password1").val();
+				var password2 = $("#password2").val();
+				if(password1 != password2){
+					layer.msg('两次输入的密码不一致！', {icon: 5}); 
+					return;
+				}
+				var custEmail = $("#custEmailInput").val();
+				var verifyEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+				if(!verifyEmail.test(custEmail)){
+					layer.msg('邮箱格式错误！', {icon: 5}); 
+					return;
+				}
+				
 			  var datas = $("#addCustForm").serialize();
 			  console.log(datas)
 			  $.ajax({

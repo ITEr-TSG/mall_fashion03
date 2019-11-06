@@ -29,7 +29,7 @@
 				
 				<li class="item4"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>折扣商品</a>
 					<ul class="cute" id="ishot_nav_ul">
-						<li class="subitem1" v-for="item in hot"><a :href="'${APP_PATH}/wares/getByConditions?waresClothingId='+item.hotId">{{item.hotName}}</a></li>
+						<li class="subitem1" v-for="item in hot"><a :href="'${APP_PATH}/wares/getByConditions?waresHotId='+item.hotId">{{item.hotName}}</a></li>
 					</ul>
 				</li>
 				<%-- <li class="item5"><a href="#"><img class="arrow-img" src="${APP_PATH }/fashion_page/images/f_menu.png" alt=""/>Jeans</a>

@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 
 import ink.tsg.admin.beans.Admin;
 import ink.tsg.admin.service.AdminService;
+import ink.tsg.untils.Msg;
 
 /**
  * <p>
@@ -36,7 +38,32 @@ public class AdminController {
 		session.invalidate();
 		return "/login";
 	}
-	
+	/**
+	 * 修改密码
+	 * */
+	@RequestMapping(value="/changePWD",method=RequestMethod.POST)
+	@ResponseBody
+	public Msg changePWD(Admin admin) {
+		System.out.println(admin);
+		EntityWrapper<Admin> wrapper = new EntityWrapper<>();
+		wrapper.eq("admin_name", admin.getAdminName());
+		wrapper.eq("admin_password", admin.getOldPassword());
+		Admin one = adminService.selectOne(wrapper);
+		System.out.println(one);
+		if(one == null) {
+			return Msg.fail().add("msg","旧密码错误！");
+		}else {
+			one.setAdminPassword(admin.getNewPassword());
+			boolean b = adminService.updateById(one);
+			if(b) {
+				return Msg.success().add("msg","修改成功！请重新登录！");
+			}else {
+				return Msg.fail().add("msg","系统出错！");
+			}
+			
+		}
+		
+	}
 	
 	/**
 	 * 跳转到管理员登录界面
@@ -65,6 +92,10 @@ public class AdminController {
 	@RequestMapping(value = "/toIndex",method=RequestMethod.GET)
 	public String toAdminIndex() {
 		return "index";
+	}
+	@RequestMapping(value = "/toChangePWD",method=RequestMethod.GET)
+	public String toChangePWD() {
+		return "changePWD";
 	}
 	
 	

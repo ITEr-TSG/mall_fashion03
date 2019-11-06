@@ -11,21 +11,22 @@
 <meta name="keywords" content="Fashionpress Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="${APP_PATH }/fashion_page/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="${APP_PATH }/fashion_page/css/style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="${APP_PATH }/static/js/jquery2.0-min.js"></script>
+<link rel="stylesheet" href="${APP_PATH}/static/verify/verify.css" >
+<script type="text/javascript" src="${APP_PATH}/static/verify/verify.min.js"></script>
+<script type="text/javascript"></script>
 </head>
 <body>
 
 <!-- 静态引入头部 -->
 <%@ include file="/fashion_page/commonPage/header.jsp"%>
-
-
 <div class="column_center">
   <div class="container">
 	<div class="search">
@@ -54,8 +55,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span>密码<label>*</label></span>
 					<input type="password" name="custPassword" required="required"> 
 				  </div>
-				  <a class="forgot" href="#">忘记密码？</a>
-				  <input type="submit" value="登录">
+				  <div id="mpanel"></div>
+				  <!-- <a class="forgot" href="#">忘记密码？</a> -->
+				  <input type="submit" class="btn" disabled="disabled" id="custLoginBtn" value="登录">
 			    </form>
 			   </div>	
 			   <div class="clearfix"> </div>
@@ -66,4 +68,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <%@ include file="/fashion_page/commonPage/footer.jsp" %>
 </body>
+<script type="text/javascript">
+
+$('#mpanel').slideVerify({
+	type : 1,		//类型
+	vOffset : 5,	//误差量，根据需求自行调整
+	barSize : {
+		width : '60%',
+		height : '40px',
+	},
+	ready : function() {
+		
+	},
+	success : function() {
+		$("#custLoginBtn").removeAttr("disabled");
+	},
+	error : function() {
+		$("#custLoginBtn").attr("disabled","disabled");
+	} 
+});
+
+</script>
+
 </html>		

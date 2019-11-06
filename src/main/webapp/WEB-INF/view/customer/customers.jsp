@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="${APP_PATH}/static/admin/css/styles.css">
 <link rel="stylesheet" href="${APP_PATH}/static/layui/css/layui.css"
 	media="all">
+	<script src="${APP_PATH}/static/vue/vue.min.js"></script>
+<script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 </head>
 <body class="sidebar-fixed header-fixed">
 	<div class="page-wrapper">

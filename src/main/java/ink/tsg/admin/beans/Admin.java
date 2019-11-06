@@ -1,6 +1,7 @@
 package ink.tsg.admin.beans;
 
 import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -21,9 +22,22 @@ public class Admin extends Model<Admin> {
     private Integer adminId;
     private String adminName;
     private String adminPassword;
+    
+    @TableField(exist=false)
+    private String newPassword;
+    @TableField(exist=false)
+    private String oldPassword;
+    
 
+	public String getOldPassword() {
+		return oldPassword;
+	}
 
-    public Integer getAdminId() {
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+
+	public Integer getAdminId() {
         return adminId;
     }
 
@@ -52,12 +66,21 @@ public class Admin extends Model<Admin> {
         return this.adminId;
     }
 
-    @Override
-    public String toString() {
-        return "Admin{" +
-        "adminId=" + adminId +
-        ", adminName=" + adminName +
-        ", adminPassword=" + adminPassword +
-        "}";
-    }
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", adminName=" + adminName + ", adminPassword=" + adminPassword
+				+ ", newPassword=" + newPassword + ", oldPassword=" + oldPassword + "]";
+	}
+
+	
+
+    
 }

@@ -72,11 +72,7 @@ public class WaresShopcarController {
 	@RequestMapping(value="/delShopCarItem",method=RequestMethod.GET)
 	@ResponseBody
 	public Msg delShopCarItem(@RequestParam("id")Integer shopCarId) {
-		WaresShopcar wShop = new WaresShopcar();
-		wShop.setShopCarId(shopCarId);
-		wShop.setCarState(-1);
-		//boolean b = wsService.deleteById(shopCarId);
-		boolean b = wsService.updateById(wShop);
+		boolean b = wsService.deleteById(shopCarId);
 		if(b) {
 			return Msg.success().add("success", "删除成功！");
 		}else {
@@ -116,6 +112,8 @@ public class WaresShopcarController {
 		Integer waresNum = wShop.getWaresNum();
 		BigDecimal num = new BigDecimal(waresNum);
 		wShop.setWaresTotal(waresPrice.multiply(num));
+		wShop.setCarState(1);
+		
 		boolean b = wsService.insert(wShop);
 		if(b) {
 			return Msg.success();

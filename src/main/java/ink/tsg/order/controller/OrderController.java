@@ -127,7 +127,7 @@ public class OrderController {
 		}
 		wrapper.eq("is_ship", -1);
 		wrapper.ne("order_state","已收货");
-		wrapper.orderBy("order_id");
+		wrapper.orderBy("order_id",false);
 		Page<Map<String, Object>> selectMapsPage = oService.selectMapsPage(new Page<>(page, limit), wrapper);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("code", 0);

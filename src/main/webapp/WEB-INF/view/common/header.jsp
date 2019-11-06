@@ -9,15 +9,15 @@
 				<i class="fa fa-bars"></i>
 			</a>
 
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item d-md-down-none"><a href="#"> <i
+			<ul class="navbar-nav ml-auto" id="headerCount_ul">
+				<li class="nav-item d-md-down-none"><a href="${APP_PATH}/order/allOrders"> <i
 						class="fa fa-bell"></i> <span
-						class="badge badge-pill badge-danger">5</span>
+						class="badge badge-pill badge-danger">{{headerCount.orderCount}}</span>
 				</a></li>
 
 				<li class="nav-item d-md-down-none"><a href="#"> <i
 						class="fa fa-envelope-open"></i> <span
-						class="badge badge-pill badge-danger">5</span>
+						class="badge badge-pill badge-danger">{{headerCount.conCount}}</span>
 				</a></li>
 
 				<li class="nav-item dropdown"><a
@@ -29,7 +29,7 @@
 				</a>
 
 					<div class="dropdown-menu dropdown-menu-right">
-						<div class="dropdown-header">统计</div>
+						<!-- <div class="dropdown-header">统计</div>
 
 						<a href="#" class="dropdown-item"> <i class="fa fa-user"></i>
 							文件
@@ -37,11 +37,11 @@
 							消息
 						</a>
 
-						<div class="dropdown-header">设置</div>
+						<div class="dropdown-header">设置</div> -->
 
-						<a href="#" class="dropdown-item"> <i class="fa fa-bell"></i>
+						<!-- <a href="#" class="dropdown-item"> <i class="fa fa-bell"></i>
 							通知日志
-						</a> <a href="#" class="dropdown-item"> <i class="fa fa-wrench"></i>
+						</a> --> <a href="${APP_PATH}/admin/toChangePWD" class="dropdown-item"> <i class="fa fa-wrench"></i>
 							编辑资料
 						</a> <a href="${APP_PATH}/admin/signOut" class="dropdown-item"> <i class="fa fa-lock"></i>
 							退出登录
@@ -49,3 +49,23 @@
 					</div></li>
 			</ul>
 		</nav>
+<script type="text/javascript">
+	var headerCount = new Vue({
+		el:"#headerCount_ul",
+		data:{
+			headerCount:[]
+		},
+		created: function () {
+			this.$http.get("${APP_PATH}/statisticsCount/headerCount").then(function(response){
+				console.log(response.body)
+				//成功
+				this.headerCount=response.body;
+			},function(response) {
+				//错误
+				console.log("查询分类时，出现系统错误！")
+			});
+		}
+	});
+	
+	
+</script>

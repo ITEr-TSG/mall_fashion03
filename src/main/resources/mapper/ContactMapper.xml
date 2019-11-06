@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.tsg.contact.mapper.ContactMapper">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="ink.tsg.contact.beans.Contact">
+        <id column="contact_id" property="contactId" />
+        <result column="contact_name" property="contactName" />
+        <result column="contact_email" property="contactEmail" />
+        <result column="contact_text" property="contactText" />
+        <result column="contact_state" property="contactState" />
+        <result column="creat_time" property="creatTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        contact_id, contact_name, contact_email, contact_text, contact_state, creat_time
+    </sql>
+
+</mapper>

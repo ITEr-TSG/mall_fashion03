@@ -65,7 +65,7 @@
 									class="nav-link"> <i class="icon icon-energy"></i> 售后管理
 								</a></li>
 
-								<li class="nav-item"><a href="cards.html" class="nav-link">
+								<!-- <li class="nav-item"><a href="cards.html" class="nav-link">
 										<i class="icon icon-energy"></i> Cards
 								</a></li>
 
@@ -84,10 +84,10 @@
 
 								<li class="nav-item"><a href="widgets.html"
 									class="nav-link"> <i class="icon icon-energy"></i> Widgets
-								</a></li>
+								</a></li> -->
 							</ul></li>
 
-						<li class="nav-item nav-dropdown"><a href="#"
+						<!-- <li class="nav-item nav-dropdown"><a href="#"
 							class="nav-link nav-dropdown-toggle"> <i
 								class="icon icon-graph"></i> Charts <i class="fa fa-caret-left"></i>
 						</a>
@@ -96,19 +96,19 @@
 								<li class="nav-item"><a href="chartjs.html"
 									class="nav-link"> <i class="icon icon-graph"></i> Chart.js
 								</a></li>
-							</ul></li>
+							</ul></li> -->
 
-						<li class="nav-item"><a href="forms.html" class="nav-link">
+						<!-- <li class="nav-item"><a href="forms.html" class="nav-link">
 								<i class="icon icon-puzzle"></i> Forms
 						</a></li>
 
 						<li class="nav-item"><a href="tables.html" class="nav-link">
 								<i class="icon icon-grid"></i> Tables
-						</a></li>
+						</a></li> -->
 
-						<li class="nav-title">More</li>
+						<!-- <li class="nav-title">More</li> -->
 
-						<li class="nav-item nav-dropdown"><a href="#"
+						<!-- <li class="nav-item nav-dropdown"><a href="#"
 							class="nav-link nav-dropdown-toggle"> <i
 								class="icon icon-umbrella"></i> Pages <i
 								class="fa fa-caret-left"></i>
@@ -145,6 +145,6 @@
 									class="nav-link"> <i class="icon icon-umbrella"></i>
 										Settings
 								</a></li>
-							</ul></li>
+							</ul></li> -->
 					</ul>
 				</nav>

@@ -69,7 +69,6 @@ public class WaresController {
 		}
 		List<Wares> list = wService.selectList(wrapper);
 		req.setAttribute("list", list);
-		
 		return "forward:/fashion_page/conditionsWares.jsp";
 	}
 	

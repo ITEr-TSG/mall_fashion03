@@ -29,6 +29,10 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 		if (carState == null) {
 			setFieldValByName("carState", 1, metaObject);
 		}
+		Object contactState = getFieldValByName("contactState", metaObject);
+		if (contactState == null) {
+			setFieldValByName("contactState", 1, metaObject);
+		}
 		// creatTime自动填充为当前时间
 		Object creatTime = getFieldValByName("creatTime", metaObject);
 		if (creatTime == null) {

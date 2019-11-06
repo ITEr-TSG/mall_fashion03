@@ -67,14 +67,14 @@ public class CustomerController {
 		wrapper.eq("cust_name", cust.getCustName());
 		try {
 			Customer customer = customerService.selectOne(wrapper);
-			//查询购物车里商品的数量
-			EntityWrapper<WaresShopcar> wrapperShop = new EntityWrapper<>();
-			wrapperShop.eq("cust_id", customer.getCustId());
-			int carCount = wsService.selectCount(wrapperShop);
 			if(customer == null) {//用户不存在
 				request.getSession().setAttribute("error", "用户不存在！");
 				return "redirect:/fashion_page/login.jsp";
 			}else {
+				//查询购物车里商品的数量
+				EntityWrapper<WaresShopcar> wrapperShop = new EntityWrapper<>();
+				wrapperShop.eq("cust_id", customer.getCustId());
+				int carCount = wsService.selectCount(wrapperShop);
 				if(customer.getCustPassword().equals(cust.getCustPassword())) { //密码正确
 					request.getSession().setAttribute("custNick", customer.getCustNick());
 					request.getSession().setAttribute("custId", customer.getCustId());
