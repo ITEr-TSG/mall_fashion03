@@ -131,7 +131,6 @@ public class CustomerController {
 	@RequestMapping(value="/editCust",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg editCust(Customer customer) {
-		System.out.println(customer);
 		boolean updateById = customerService.updateById(customer);
 		if(updateById) {
 			return Msg.success();
@@ -191,7 +190,6 @@ public class CustomerController {
 	public Msg delCusts(@RequestBody List<Integer> custs) {
 		try {
 			boolean b = customerService.deleteBatchIds(custs);
-			System.out.println(b);
 			return Msg.success().add("msg", "删除成功！");
 		} catch (Exception e) {
 			return Msg.fail().add("msg", "删除失败！");

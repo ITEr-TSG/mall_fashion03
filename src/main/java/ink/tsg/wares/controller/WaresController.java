@@ -40,7 +40,7 @@ public class WaresController {
 	/**
 	 * 文件保存的路径
 	 */
-	public static final String UPLOAD_PATH = "F:\\workspace\\spring-boot\\mall_fashion03\\src\\main\\webapp\\upload";
+	public static final String UPLOAD_PATH = "F:\\temp";
 
 	@Autowired
 	private WaresService wService;

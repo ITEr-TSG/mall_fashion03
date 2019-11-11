@@ -69,7 +69,6 @@ public class OrderController {
 	@RequestMapping(value="/getOrdersByCustId",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getOrdersByCustId(@RequestParam("page")Integer page,@RequestParam("limit")Integer limit,@RequestParam("id")Integer custId) {
-		System.out.println(custId);
 		EntityWrapper<Order> wrapper = new EntityWrapper<>();
 		wrapper.eq("order_cust_id", custId);
 		wrapper.orderBy("order_id", false);

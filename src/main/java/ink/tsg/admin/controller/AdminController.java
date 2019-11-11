@@ -44,12 +44,10 @@ public class AdminController {
 	@RequestMapping(value="/changePWD",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg changePWD(Admin admin) {
-		System.out.println(admin);
 		EntityWrapper<Admin> wrapper = new EntityWrapper<>();
 		wrapper.eq("admin_name", admin.getAdminName());
 		wrapper.eq("admin_password", admin.getOldPassword());
 		Admin one = adminService.selectOne(wrapper);
-		System.out.println(one);
 		if(one == null) {
 			return Msg.fail().add("msg","旧密码错误！");
 		}else {
