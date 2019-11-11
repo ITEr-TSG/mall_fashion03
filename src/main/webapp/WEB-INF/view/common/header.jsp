@@ -15,7 +15,7 @@
 						class="badge badge-pill badge-danger">{{headerCount.orderCount}}</span>
 				</a></li>
 
-				<li class="nav-item d-md-down-none"><a href="#"> <i
+				<li class="nav-item d-md-down-none"><a href="${APP_PATH}/admin/toIndex"> <i
 						class="fa fa-envelope-open"></i> <span
 						class="badge badge-pill badge-danger">{{headerCount.conCount}}</span>
 				</a></li>
