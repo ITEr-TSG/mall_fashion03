@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>后台管理主页</title>
+<title>修改密码</title>
 <link rel="stylesheet"
 	href="${APP_PATH}/static/admin/vendor/simple-line-icons/css/simple-line-icons.css">
 <link rel="stylesheet"
@@ -88,7 +88,6 @@ $('#mpanel').slideVerify({
 				method:"POST",
 				data:$("#changePWDForm").serialize(),
 				success:function(res){
-					console.log(res)
 					if(res.code==100){
 						layer.msg(res.extend.msg,{icon: 6},function(){
 							window.location.href="${APP_PATH}/admin/signOut"

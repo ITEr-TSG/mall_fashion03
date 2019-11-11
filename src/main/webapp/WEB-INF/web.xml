@@ -4,16 +4,19 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<welcome-file-list>
-    	<welcome-file>index.jsp</welcome-file>
-  	</welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 配置404界面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/fashion_page/404.jsp</location>
+	</error-page>
 	<!-- 启动spring容器 -->
-	<!-- needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 
-	<!-- Bootstraps the root web application context before servlet initialization -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -28,7 +31,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
-		
+
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -38,7 +41,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- 字符编码过滤器 一定要放在所有过滤器之前-->
+	<!-- 字符编码过滤器 一定要放在所有过滤器之前 -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -59,8 +62,8 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<!-- 使用rest风格URI，添加method过滤器 将普通的post转换成delete。。。。-->
+
+	<!-- 使用rest风格URI，添加method过滤器 将普通的post转换成delete。。。。 -->
 	<filter>
 		<filter-name>HiddenHttpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>

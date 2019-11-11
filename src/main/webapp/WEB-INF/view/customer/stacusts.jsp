@@ -76,7 +76,6 @@
 			url:"${APP_PATH}/customer/staCusts",
 			method:"GET",
 			success:function(data){
-				//console.log(data)
 				//性别统计
 				var gender = new Array();
 				var age = new Array();
@@ -87,8 +86,6 @@
 					age[1] = data.extend.age29;
 					age[2] = data.extend.age59;
 					age[3] = data.extend.age100;
-					
-					
 					//渲染图表
 					var genderChart = $('#gender-chart');
 					 if (genderChart.length > 0) {

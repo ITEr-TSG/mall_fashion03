@@ -57,7 +57,6 @@
 		},
 		created: function () {
 			this.$http.get("${APP_PATH}/statisticsCount/headerCount").then(function(response){
-				console.log(response.body)
 				//成功
 				this.headerCount=response.body;
 			},function(response) {

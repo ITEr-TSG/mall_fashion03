@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Carbon - Admin Template</title>
+<title>添加客户</title>
 <link rel="stylesheet"
 	href="${APP_PATH}/static/admin/vendor/simple-line-icons/css/simple-line-icons.css">
 <link rel="stylesheet"
@@ -152,13 +152,11 @@
 				}
 				
 			  var datas = $("#addCustForm").serialize();
-			  console.log(datas)
 			  $.ajax({
 				  url:"${APP_PATH}/customer/regiterCust",
 				  method:"POST",
 				  data:$("#addCustForm").serialize(),
 				  success:function(data){
-					  console.log(data)
 					  if(data.code == 100){
 						  layer.msg('添加成功！', {
 							  icon: 1,

@@ -87,7 +87,6 @@ input[type="number"] {
 			success:function(data){
 				var seasoCount = new Array();
 				var priceCount = new Array();
-				console.log(data)
 				if(data.code == 100){
 					seasoCount[0] = data.extend.springCount;
 					seasoCount[1] = data.extend.summerCount;
@@ -169,95 +168,6 @@ input[type="number"] {
 				}
 				
 		})
-		
-		
-		
-		/* $.ajax({
-			url:"${APP_PATH}/wares/staWares",
-			method:"GET",
-			success:function(data){
-				//console.log(data)
-				//性别统计
-				var gender = new Array();
-				var age = new Array();
-				if(data.code==100){
-					gender[0] = data.extend.countMan;
-					gender[1] = data.extend.countWoman;
-					age[0] = data.extend.age19;
-					age[1] = data.extend.age29;
-					age[2] = data.extend.age59;
-					age[3] = data.extend.age100;
-					
-					
-					//渲染图表
-					var genderChart = $('#gender-chart');
-					 if (genderChart.length > 0) {
-					        new Chart(genderChart, {
-					            type: 'pie',
-					            data: {
-					                labels: ["女", "男"],
-					                datasets: [{
-					                    label: '性别统计',//鼠标指向某个柱时，柱上面显示的标签 比如：'出库'（指着电脑列时会显示这列表示 出库）
-					                    data: gender,//柱子表示的数据 
-					                    backgroundColor: [
-					                        'rgba(244, 88, 70, 0.5)',
-					                        'rgba(33, 150, 243, 0.5)',
-					                    ],
-					                    borderColor: [
-					                        'rgba(244, 88, 70, 0.5)',
-					                        'rgba(33, 150, 243, 0.5)',
-					                    ],
-					                    borderWidth: 1
-					                }]
-					            }
-					        });
-					    }
-					//年龄统计
-					var ageChart = $('#age-chart');
-				    if (ageChart.length > 0) {
-				        new Chart(ageChart, {
-				            type: 'bar',
-				            data: {
-				                labels: ["0~19", "20~29", "30~59", "60~100"],
-				                datasets: [{
-				                    label: '年龄统计',
-				                    data: age,
-				                    backgroundColor: [
-				                        'rgba(244, 88, 70, 0.5)',
-				                        'rgba(33, 150, 243, 0.5)',
-				                        'rgba(0, 188, 212, 0.5)',
-				                        'rgba(42, 185, 127, 0.5)',
-				                        
-				                    ],
-				                    borderColor: [
-				                        '#F45846',
-				                        '#2196F3',
-				                        '#00BCD4',
-				                        '#2ab97f',
-				                    ],
-				                    borderWidth: 1
-				                }]
-				            },
-				            options: {
-				                legend: {
-				                    display: false
-				                },
-				                scales: {
-				                    yAxes: [{
-				                        ticks: {
-				                            beginAtZero: true
-				                        }
-				                    }]
-				                }
-				            }
-				        });
-				    }
-				}else{
-					alert("系统繁忙！");
-				}
-			}
-			
-		}); */
 	})
 	</script>
 </body>

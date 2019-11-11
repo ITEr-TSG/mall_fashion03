@@ -341,7 +341,6 @@ input[type="number"] {
 			 url:"${APP_PATH}/hotwares/addhot?newHotName="+newHotName,
 			 method:"GET",
 			 success:function(r){
-				 console.log(r)
 				 if(r.code==100){
 					 $("#add_hot").modal('hide');
 					 location.reload();
@@ -420,7 +419,6 @@ input[type="number"] {
             	 }
              },
              error:function(data){
-                 console.log(data)
                  alert("后台发生异常");
              },
              cache:false,

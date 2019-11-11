@@ -440,7 +440,6 @@ input[type="number"] {
 						toolbar : '#operate'
 					} ] ],
 					parseData : function(res) { //res 即为原始返回的数据
-						console.log(res);
 						return {
 							"code" : res.code, //解析接口状态
 							"msg" : res.message, //解析提示文本
@@ -554,7 +553,6 @@ input[type="number"] {
 					data : JSON.stringify(waresIds),//序列化复杂对象
 					//data:custIds,
 					success : function(data) {
-						console.log(data);
 						if (data.code == 100) {
 							layer.close();
 							layer.msg(data.extend.msg, {
@@ -621,7 +619,6 @@ input[type="number"] {
 		            	 }
 		             },
 		             error:function(data){
-		                 console.log(data)
 		                 alert("后台发生异常");
 		             },
 		             cache:false,

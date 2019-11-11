@@ -223,7 +223,6 @@ input[type="number"] {
 				  var data = obj.data; //获得当前行数据
 				  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 				  var tr = obj.tr;
-				  console.log(data)
 				  $(".orderNumSpan").html(data.orderNum);
 				  if(layEvent === 'detailOrder'){ //查看
 					  
@@ -233,7 +232,6 @@ input[type="number"] {
 						  url:"${APP_PATH}/waresShopcar/getWaresItemById?id="+data.orderCarId+"&orderNum="+data.orderNum,
 						  method:"GET",
 						  success:function(res){
-							console.log(res)
 							if(res.code == 100){
 								$("#ImgModal").attr("src",res.extend.imgPath);
 								$("#waresNameSpan").html(res.extend.waresItem.waresName);
@@ -335,7 +333,6 @@ input[type="number"] {
 			method:"POST",
 			data:remarkForm,
 			success:function(res){
-				console.log(res)
 				if(res.code == 100){
 					layer.msg(res.extend.msg, {icon: 6},function(){
 						location.reload();
@@ -354,7 +351,6 @@ input[type="number"] {
 			method:"POST",
 			data:consigneeForm,
 			success:function(res){
-				console.log(res)
 				if(res.code == 100){
 					layer.msg(res.extend.msg, {icon: 6},function(){
 						location.reload();

@@ -81,12 +81,11 @@
 			},
 			created: function (event) {
 				this.$http.get("${APP_PATH}/clothingwares/getAll").then(function(response){
-					console.log(response)
 					//成功
 					this.clothing=response.body;
 				},function(response) {
 					//错误
-					console.log("跳出模态框，查询分类时，出现系统错误！")
+					console.log("左侧导航栏，查询分类时，出现系统错误！")
 				});
 			}
 		});
@@ -101,7 +100,7 @@
 					this.hot=response.body;
 				},function(response) {
 					//错误
-					console.log("弹出模态框，查询是否热销产品时，出现系统错误！")
+					console.log("左侧导航栏，查询是否热销产品时，出现系统错误！")
 				});
 			}
 		});

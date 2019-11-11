@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>所有订单</title>
+<title>售后管理</title>
 <link rel="stylesheet"
 	href="${APP_PATH}/static/admin/vendor/simple-line-icons/css/simple-line-icons.css">
 <link rel="stylesheet"
@@ -188,7 +188,6 @@ input[type="number"] {
 				  var data = obj.data; //获得当前行数据
 				  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 				  var tr = obj.tr;
-				  console.log(data)
 				  $(".orderNumSpan").html(data.orderNum);
 				  if(layEvent === 'detailOrder'){ //查看
 					  $("#orderNumInput").val(data.orderNum);
@@ -197,7 +196,6 @@ input[type="number"] {
 						  url:"${APP_PATH}/waresShopcar/getWaresItemById?id="+data.orderCarId+"&orderNum="+data.orderNum,
 						  method:"GET",
 						  success:function(res){
-							console.log(res)
 							if(res.code == 100){
 								$("#ImgModal").attr("src",res.extend.imgPath);
 								$("#waresNameSpan").html(res.extend.waresItem.waresName);
@@ -230,7 +228,6 @@ input[type="number"] {
 						url:"${APP_PATH}/customer/getById?id="+data.orderCustId,
 						method:"GET",
 						success:function(res){
-							console.log(res)
 							if(res.code == 100){
 								$("#custNameSpan").html(res.extend.cust.custName);
 								$("#custEmailSpan").html(res.extend.cust.custEmail);

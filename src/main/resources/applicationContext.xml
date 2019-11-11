@@ -40,7 +40,7 @@
 		<property name="plugins">
             <array>
             	<!-- 生成sql语句 -->
-            	<bean id="performanceInterceptor" class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor"/>
+            	<!-- <bean id="performanceInterceptor" class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor"/> -->
                 <!-- 分页插件配置 -->
                 <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor"></bean>
             	

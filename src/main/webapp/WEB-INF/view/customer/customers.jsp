@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Carbon - Admin Template</title>
+<title>所有客户</title>
 <link rel="stylesheet"
 	href="${APP_PATH}/static/admin/vendor/simple-line-icons/css/simple-line-icons.css">
 <link rel="stylesheet"
@@ -189,7 +189,6 @@
 						toolbar : '#operate'
 					} ] ],
 					parseData : function(res) { //res 即为原始返回的数据
-						console.log(res);
 						return {
 							"code" : res.code, //解析接口状态
 							"msg" : res.message, //解析提示文本
@@ -206,7 +205,6 @@
 					var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
 
 					if (layEvent === 'detailCust') { //查看
-						console.log(data)
 						var detailHtml = '<div class="layui-card"><div class="layui-card-header">查看<div class="layui-card-body">';
 
 						detailHtml += '<div class="layui-form-item">'
@@ -262,7 +260,6 @@
 							delCust(custIds);
 						});
 					} else if (layEvent === 'editCust') { //编辑
-						console.log(data)
 						var detailHtml = '<div class="layui-card"><div class="layui-card-header">修改客户信息<div class="layui-card-body">';
 						/* <form class="layui-form" id="screenForm">
 						<div class="layui-row"> */
@@ -337,7 +334,6 @@
 					method : "POST",
 					data : $("#editCust").serialize(),
 					success : function(data) {
-						console.log(data)
 						if (data.code == 100) {
 							layer.msg(data.msg, {
 								icon : 1
@@ -388,7 +384,6 @@
 					data : JSON.stringify(custIds),//序列化复杂对象
 					//data:custIds,
 					success : function(data) {
-						console.log(data);
 						if (data.code == 100) {
 							layer.close();
 							layer.msg(data.extend.msg, {
